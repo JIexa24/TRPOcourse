@@ -2,4 +2,4 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void ceasar();
+void ceasar(char * argv[]);

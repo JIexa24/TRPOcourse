@@ -2,6 +2,5 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void dvo();
+void dvo(char * argv[]);
 void per();
-
