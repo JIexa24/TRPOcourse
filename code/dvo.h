@@ -1,8 +1,10 @@
 #ifndef DVO_H
 #define DVO_H
-#include<stdio.h>
-#include<stdlib.h>
 
-void dvo(char * argv[]);
-void per();
+#include <stdio.h>
+#include <stdlib.h>
+
+void dvo(char *eng, char *ENG, int desh);
+void per(int chislo);
+
 #endif

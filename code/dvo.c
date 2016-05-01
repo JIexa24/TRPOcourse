@@ -1,4 +1,4 @@
-#include"dvo.h"
+#include "dvo.h"
 // perametry- 1:chiper(d) 2:desh
 
 void per( int chislo )
@@ -27,13 +27,13 @@ void per( int chislo )
   }
                      
 }
-void dvo(char * argv[])
+void dvo(char *eng, char *ENG, int desh)
 {
-  char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
-  char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+  //char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
+  //char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 //                 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25    26    27   
   int ceas,i,j=0,lenght = 1,lorr,vvod = 1;
-  int desh = atoi(argv[2]);
+  //int desh = atoi(argv[2]);
   char *slovo;
   
   slovo = (char*)malloc( lenght );   
@@ -60,11 +60,11 @@ void dvo(char * argv[])
   {  
     for( i = 0; i < lenght; i++)
     {
-  	if( (int)slovo[i] == ' ')
+  	/*if( (int)slovo[i] == ' ')
 	{
 	  printf(" ");
 	  continue;
-    }
+    }*/
       for(j=0;j<28;j++)
       {
         if(slovo[i] == eng[j] || ( j<=25 )*(slovo[i] == ENG[j]) )
@@ -85,8 +85,7 @@ void dvo(char * argv[])
           {
             printf("0");        
           }
-          per(j);
-          printf(" ");                  
+          per(j);                  
         }     
       }                     
     }
@@ -95,7 +94,7 @@ void dvo(char * argv[])
   {
     int step=16;  
     for( i = 0; i < lenght; i++)
-    {
+    { 
       if( slovo[i] == '1')j = j+step;
       step/=2;
       if( (i+1)%5 == 0 )

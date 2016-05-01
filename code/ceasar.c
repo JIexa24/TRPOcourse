@@ -1,16 +1,16 @@
-#include"ceasar.h"
+#include "ceasar.h"
 // perametry- 1:chiper(c) 2:kluch 3:left/right 4:desh
 
-void ceasar(char * argv[])
+void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
 {//ceasar chiper
-  char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
-  char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+  //char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
+  //char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 //                 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25    26    27   
   int i,j,lenght = 1,vvod = 1;    
-  int ceas = atoi(argv[2]);
-  int lorr = atoi(argv[3]);
-  int desh = atoi(argv[4]);
-  
+ // int ceas = atoi(argv[2]);
+  //int lorr = atoi(argv[3]);
+ // int desh = atoi(argv[4]);
+  printf("%d", ceas);
   char *slovo;
   
   slovo = (char*)malloc( lenght );   

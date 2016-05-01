@@ -1,7 +1,8 @@
 #ifndef ATBASH_H
 #define ATBASH_H
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void atbash(char * argv[]);
+void atbash(char *eng, char *ENG, int desh);
+
 #endif
