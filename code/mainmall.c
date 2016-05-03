@@ -1,12 +1,14 @@
 #include "ceasar.h"
 #include "vizhiner.h"
-#include "dvo.h"
 #include "atbash.h"
+
 #include <unistd.h>
+
 #define ONE 1
 #define TWO 2
 #define THREE 3
 #define FOUR 4
+
 //   char rus[35]={'а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я', ',' , '.' };
 //   char RUS[35]={'А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я', ',' , '.' };
        
@@ -21,13 +23,13 @@ int main(int argc, char * argv[])
 
   printf("2.Chiper Vizhiner\n");
  
-  printf("3.Chiper EGE\n");
+  //printf("3.Chiper EGE\n");
   
-  printf("4.Chiper Atbash\n");
+  printf("3.Chiper Atbash\n");
   int opt;
   int variant = 0, kluch = -1, lorr = 1, debug = 0;
 	//opterr = 0; // запретить вывод ошибок от getopt()
-	while ((opt = getopt(argc, argv, "cveak:ld")) != -1)
+	while ((opt = getopt(argc, argv, "cvak:ld")) != -1)
 	{
 		switch (opt)
 		{
@@ -42,14 +44,10 @@ int main(int argc, char * argv[])
 			  if (variant == 0)
 				variant = 2;
 			break;
-            case 'e':
-              if (variant == 0)
-				variant = 3;
-            break;
-            case 'a':
-              if (variant == 0)
-				variant = 4;
-            break;
+      case 'a':
+        if (variant == 0)
+				  variant = 3;
+      break;
 			case 'l':
 				lorr = 0;
 			break;
@@ -61,16 +59,18 @@ int main(int argc, char * argv[])
   //scanf("%d%*c",&variant);  
   //int variant = atoi(argv[1]);
   if (kluch < 0 && variant == 1)
+  {
+  	printf("\nmiss key for ceasar");
     return 1;
+	}
     
-  printf("%d", variant);
+  //printf("%d", variant);
   switch(variant)
   {  
     case ONE: ceasar(eng, ENG, kluch, lorr, debug); break;
     case TWO: vizhiner(eng, ENG, lorr, debug); break;
-    case THREE: dvo(eng, ENG, debug); break;
-    case FOUR: atbash(eng, ENG, debug); break;
-    default: printf("xrenb");break;
+    case THREE: atbash(eng, ENG, debug); break;
+    default: printf("error");break;
   }
   return 0;
   
