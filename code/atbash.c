@@ -1,5 +1,5 @@
 #include "atbash.h"
-// perametry- 1:chiper(a) 2:desh
+/// perametry- 1:chiper(a) 2:desh
 
 void atbash(char *eng, char *ENG, int desh)
 {
