@@ -17,6 +17,8 @@ int main(int argc, char * argv[])
   char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
   char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
   
+  FILE * fout;
+
   printf("Chipers\n");
 
   printf("1.Chiper ceasar\n");
@@ -44,10 +46,10 @@ int main(int argc, char * argv[])
 			  if (variant == 0)
 				variant = 2;
 			break;
-      case 'a':
-        if (variant == 0)
+      			case 'a':
+        			if (variant == 0)
 				  variant = 3;
-      break;
+   			break;
 			case 'l':
 				lorr = 0;
 			break;
@@ -60,16 +62,16 @@ int main(int argc, char * argv[])
   //int variant = atoi(argv[1]);
   if (kluch < 0 && variant == 1)
   {
-  	printf("\nmiss key for ceasar");
+  	printf("\nmiss key for ceasar\n");
     return 1;
 	}
     
   //printf("%d", variant);
   switch(variant)
   {  
-    case ONE: ceasar(eng, ENG, kluch, lorr, debug); break;
-    case TWO: vizhiner(eng, ENG, lorr, debug); break;
-    case THREE: atbash(eng, ENG, debug); break;
+    case ONE: ceasar(eng, ENG, kluch, lorr, debug, &fout); break;
+    case TWO: vizhiner(eng, ENG, lorr, debug, &fout); break;
+    case THREE: atbash(eng, ENG, debug, &fout); break;
     default: printf("error");break;
   }
   return 0;

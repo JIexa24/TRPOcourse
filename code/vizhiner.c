@@ -1,7 +1,7 @@
 #include "vizhiner.h"
 // perametry- 1:chiper(v) 2:left/right 3:desh
 
-void vizhiner(char *eng, char *ENG, int lorr, int desh)
+void vizhiner(char *eng, char *ENG, int lorr, int desh, FILE ** fout)
 {
   //char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
   //char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
@@ -9,13 +9,13 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
   int i,j,o = 1,lenght = 1,klenght = 1,vvod = 1,mas = 1;
   //int lorr = atoi(argv[2]);
   //int desh = atoi(argv[3]);
-  
+  *fout = fopen("out.txt","a"); 
   char *slovo;
  
   slovo = (char*)malloc( lenght );
  
   lenght = 0;
- 
+  fprintf(*fout,"Vizhiner\n\n");
   printf("\nVvedite slovo\n");
  
   while(vvod == 1)
@@ -24,8 +24,12 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
 
     if( slovo[lenght] == '\n' ) break;
     slovo = (char*)realloc( slovo, ++lenght+1 );
-  }                    
-    
+  }             
+  fprintf(*fout, "Slovo:\n");       
+  for(i = 0; i< lenght;i++)  
+   fprintf(*fout, "%c",slovo[i]);
+
+  fprintf(*fout, "\n" );  
   char *kodslovo;
 
   kodslovo = (char*)malloc(klenght);
@@ -42,10 +46,15 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
     if( kodslovo[klenght] == '\n' ) break;
     kodslovo = (char*)realloc( kodslovo, ++klenght+1 ); //tk void
   }
-                        
+  fprintf(*fout, "\nKodslovo:\n");
+  for(i = 0; i< klenght;i++)  
+    fprintf(*fout, "%c",kodslovo[i]);
+
+  fprintf(*fout, "\n\n" );                      
 //  printf("\nleft or right?  1-right/0-left?\n");
 //  scanf("%d",&lorr);               
    
+  fprintf(*fout, "rezult:\n");
   int *ceas;
   ceas = (int*)malloc( klenght*sizeof(int) );
   o = 0;
@@ -53,7 +62,7 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
   {
   	if( (int)slovo[i] == ' ' )
 	{
-	  printf(" ");
+	  fprintf(*fout, " ");
 	  continue;
     }
     if(o == klenght)
@@ -81,12 +90,12 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
         {                
           if( (desh == 0)*( (j+ceas[o]) > 27 )+(desh == 1)*((j-ceas[o]) < 0) )
           {
-            printf( "%c",eng[ (desh == 0)*(j+ceas[o]-28)+(desh == 1)*(j-ceas[o]+28) ] );
+            fprintf(*fout,  "%c",eng[ (desh == 0)*(j+ceas[o]-28)+(desh == 1)*(j-ceas[o]+28) ] );
             break;
           }                                      
           else
           {
-            printf("%c",eng[ (desh == 0)*(j+ceas[o])+(desh == 1)*(j-ceas[o]) ]);
+            fprintf(*fout, "%c",eng[ (desh == 0)*(j+ceas[o])+(desh == 1)*(j-ceas[o]) ]);
             break;
           } //esly vyhodit za ramki+deshifrovka              
         } 
@@ -94,12 +103,12 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
         {                
           if( (desh == 0)*( (j-ceas[o]) < 0 )+(desh == 1)*( (j+ceas[o]) > 27 ) )
           {
-            printf( "%c",eng[ (desh == 0)*(j-ceas[o]+28)+(desh == 1)*(j+ceas[o]-28) ] ); 
+            fprintf(*fout, "%c",eng[ (desh == 0)*(j-ceas[o]+28)+(desh == 1)*(j+ceas[o]-28) ] ); 
             break;
           }                               
           else
           {
-            printf("%c",eng[ (desh ==0 )*(j-ceas[o])+(desh == 1)*(j+ceas[o]) ]);
+            fprintf(*fout, "%c",eng[ (desh ==0 )*(j-ceas[o])+(desh == 1)*(j+ceas[o]) ]);
             break;
           }
         }                  
@@ -112,12 +121,12 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
         {                
           if( (desh == 0)*( (j+ceas[o]) > 25 )+(desh == 1)*( (j-ceas[o])<0 ) )
           {
-            printf( "%c",ENG[ (desh == 0)*(j+ceas[o]-26)+(desh == 1)*(j-ceas[o]+26) ] );
+            fprintf(*fout, "%c",ENG[ (desh == 0)*(j+ceas[o]-26)+(desh == 1)*(j-ceas[o]+26) ] );
             break;
           }
           else
           {
-            printf("%c",ENG[ (desh == 0)*(j+ceas[o])+(desh == 1)*(j-ceas[o]) ]);
+            fprintf(*fout, "%c",ENG[ (desh == 0)*(j+ceas[o])+(desh == 1)*(j-ceas[o]) ]);
             break;
           } //esly vyhodit za ramki+deshifrovka              
         } 
@@ -126,13 +135,13 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
         {                
           if( (desh == 0)*( (j-ceas[o]) < 0 )+(desh == 1)*( (j+ceas[o]) > 25 ) )
           {
-            printf( "%c",ENG[ (desh == 0)*(j-ceas[o]+26)+(desh == 1)*(j+ceas[o]-26) ] ); 
+            fprintf(*fout, "%c",ENG[ (desh == 0)*(j-ceas[o]+26)+(desh == 1)*(j+ceas[o]-26) ] ); 
             break;
           }                               
           else
           {
-          printf("%c",ENG[ (desh == 0)*(j-ceas[o])+(desh == 1)*(j+ceas[o]) ]);
-          break;
+            fprintf(*fout, "%c",ENG[ (desh == 0)*(j-ceas[o])+(desh == 1)*(j+ceas[o]) ]);
+            break;
           }
         }                  
       }                       
@@ -144,11 +153,11 @@ void vizhiner(char *eng, char *ENG, int lorr, int desh)
  
   }
   
-  printf("\n");
+  fprintf(*fout, "\n\n");
   
   free(slovo);
   free(kodslovo);
   free(ceas);
-                    
+  fclose(*fout) ;                 
   system("pause");
 }  

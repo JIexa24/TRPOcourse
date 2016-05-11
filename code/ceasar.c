@@ -1,7 +1,7 @@
 #include "ceasar.h"
 // perametry- 1:chiper(c) 2:kluch 3:left/right 4:desh
 
-void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
+void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh, FILE ** fout)
 {//ceasar chiper
   //char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
   //char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
@@ -11,12 +11,15 @@ void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
   //int lorr = atoi(argv[3]);
  // int desh = atoi(argv[4]);
   printf("%d", ceas);
+  *fout = fopen("out.txt","a");
+
   char *slovo;
-  
+
   slovo = (char*)malloc( lenght );   
      
   lenght = 0; 
-  
+  fprintf(*fout, "Ceasar\n");
+  fprintf(*fout, "\nSlovo:\n");
   printf("\nVvedite slovo\n");
   
   while( vvod == 1 )
@@ -36,12 +39,16 @@ void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
   
   printf("\nleft or right?  1-right/0-left?\n");
   scanf("%d",&lorr);*/
-    
+  for(i = 0; i< lenght;i++)  
+    fprintf(*fout, "%c",slovo[i]);
+
+  fprintf(*fout, "\n\nkluch:%d\n\n", ceas );
+  fprintf(*fout, "rezult:\n");
   for( i = 0; i < lenght; i++ )
   {
   	if( (int)slovo[i] == ' ' )
 	{
-	  printf(" ");
+	  fprintf(*fout," ");
 	  continue;
     }
     for( j = 0; j < 28; j++ )
@@ -56,22 +63,22 @@ void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
         {                
           if( ( desh == 0 )*( (j+ceas) > 27 ) + ( desh == 1 )*( (j-ceas) < 0 ) )
           {
-            printf( "%c", eng[ (desh == 0)*(j+ceas-28)+(desh == 1)*(j-ceas+28) ] ); 
+            fprintf(*fout, "%c", eng[ (desh == 0)*(j+ceas-28)+(desh == 1)*(j-ceas+28) ] ); 
           }                               
           else
           { 
-            printf("%c",eng[ (desh == 0)*(j+ceas)+(desh == 1)*(j-ceas) ]); //esly vyhodit za ramki+deshifrovka              
+            fprintf(*fout, "%c",eng[ (desh == 0)*(j+ceas)+(desh == 1)*(j-ceas) ]); //esly vyhodit za ramki+deshifrovka              
           }
         } 
         if( lorr == 0 )
         {                
           if( (desh == 0)*( (j-ceas) < 0 )+(desh == 1)*( (j+ceas) > 27 ) )
           {
-            printf( "%c",eng[ (desh == 0)*(j-ceas+28)+(desh == 1)*(j+ceas-28) ] ); 
+            fprintf(*fout, "%c",eng[ (desh == 0)*(j-ceas+28)+(desh == 1)*(j+ceas-28) ] ); 
           }                                
           else
           { 
-            printf("%c",eng[ (desh == 0)*(j-ceas)+(desh == 1)*(j+ceas) ]);
+            fprintf(*fout, "%c",eng[ (desh == 0)*(j-ceas)+(desh == 1)*(j+ceas) ]);
           }
         }                  
       }                 
@@ -84,13 +91,17 @@ void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
         }
         if( lorr==1 )
         {                
-          if( (desh==0)*((j+ceas)>25)+(desh==1)*((j-ceas)<0) )printf("%c",ENG[ (desh==0)*(j+ceas-26)+(desh==1)*(j-ceas+26) ]);                               
-          else printf("%c",ENG[ (desh==0)*(j+ceas)+(desh==1)*(j-ceas) ]);               
+          if( (desh==0)*((j+ceas)>25)+(desh==1)*((j-ceas)<0) )
+            fprintf(*fout, "%c",ENG[ (desh==0)*(j+ceas-26)+(desh==1)*(j-ceas+26) ]);                               
+          else 
+            fprintf(*fout, "%c",ENG[ (desh==0)*(j+ceas)+(desh==1)*(j-ceas) ]);               
         } 
         if( lorr==0 )
         {                
-          if( (desh==0)*((j-ceas)<0)+(desh==1)*((j+ceas)>25) )printf("%c",ENG[ (desh==0)*(j-ceas+26)+(desh==1)*(j+ceas-26) ]);                                
-          else printf("%c",ENG[ (desh==0)*(j-ceas)+(desh==1)*(j+ceas) ]);
+          if( (desh==0)*((j-ceas)<0)+(desh==1)*((j+ceas)>25) )
+             fprintf(*fout,"%c",ENG[ (desh==0)*(j-ceas+26)+(desh==1)*(j+ceas-26) ]);                                
+          else 
+             fprintf(*fout,"%c",ENG[ (desh==0)*(j-ceas)+(desh==1)*(j+ceas) ]);
         }                  
       }                 
     }
@@ -129,9 +140,9 @@ void ceasar(char *eng, char *ENG, int ceas, int lorr, int desh)
                           
   }              
  
-  printf("\n");
+  fprintf(*fout, "\n\n");
  
   free(slovo);                             
-
+  fclose(*fout);
   system("pause");
 }
