@@ -1,0 +1,9 @@
+[alias]
+
+  gci = git commit
+  gco = git checkout
+  gst = git status
+  gbr = git branch
+  glog = git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  gad = git add
+  grst = git reset
