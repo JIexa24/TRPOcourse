@@ -3,6 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void atbash(char *eng, char *ENG, int desh, FILE ** fout);
+void atbash(const char *eng, const char *ENG, int desh, FILE ** fout);
 
 #endif

@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void vizhiner(char *eng, char *ENG, int lorr, int desh, FILE ** fout);
+void vizhiner(const char *eng, const char *ENG, int lorr, int desh, FILE ** fout);
 
 #endif
