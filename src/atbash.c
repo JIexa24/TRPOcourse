@@ -34,7 +34,7 @@ void atbash(const char *eng, const char *ENG, int desh, FILE ** fout)
   fprintf(*fout, "rezult:\n");
   for( i = 0; i < lenght; i++ )
   {
-  	if( (int)slovo[i] == ' ')
+  	if(slovo[i] == ' ')
 	{
 	  fprintf(*fout, " ");
 	  continue;
