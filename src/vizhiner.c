@@ -19,44 +19,44 @@ void vizhiner(const char *eng, const char *ENG,
     if( slovo[lenght] == '\n' )
       break;
 
-    slovo = (char*)realloc( slovo, ++lenght+1 );
+    slovo = (char*)realloc(slovo, ++lenght + 1);
   }
 
   fprintf(*fout, "Slovo:\n");
 
-  for (i = 0; i< lenght;i++)
-   fprintf(*fout, "%c",slovo[i]);
+  for (i = 0; i < lenght; i++)
+   fprintf(*fout, "%c", slovo[i]);
 
-  fprintf(*fout, "\n" );
+  fprintf(*fout, "\n");
 
   char *kodslovo;
-  kodslovo = (char*)malloc(sizeof(kodslovo));
+  kodslovo = (char *)malloc(sizeof(kodslovo));
 
   printf("\nVvedite kodslovo\n");
 
   while (vvod == 1) {
-    scanf("%c",&kodslovo[klenght]);
+    scanf("%c", &kodslovo[klenght]);
 
     if (kodslovo[klenght] == '\n')
       break;
 
-    kodslovo = (char*)realloc(kodslovo, ++klenght+1);
+    kodslovo = (char *)realloc(kodslovo, ++klenght + 1);
   }
 
   fprintf(*fout, "\nKodslovo:\n");
 
-  for (i = 0; i< klenght;i++)
-    fprintf(*fout, "%c",kodslovo[i]);
+  for (i = 0; i < klenght; i++)
+    fprintf(*fout, "%c", kodslovo[i]);
 
-  fprintf(*fout, "\n\n" );
+  fprintf(*fout, "\n\n");
   fprintf(*fout, "rezult:\n");
 
   int *ceas;
-  ceas = (int*)malloc(klenght*sizeof(int));
+  ceas = (int *)malloc(klenght * sizeof(int));
 
   o = 0;
   for (i = 0; i < lenght; i++) {
-    if( (int)slovo[i] == ' ' ) {
+    if(slovo[i] == ' ') {
       fprintf(*fout, " ");
       continue;
     }
@@ -78,7 +78,7 @@ void vizhiner(const char *eng, const char *ENG,
     for (j = 0; j < 28; j++) {
       if (slovo[i] == eng[j]) {
         if (lorr == 1) {
-          if ((desh == 0) * ((j + ceas[o]) > 27)+(desh == 1) * ((j - ceas[o]) < 0)) {
+          if ((desh == 0) * ((j + ceas[o]) > 27) + (desh == 1) * ((j - ceas[o]) < 0)) {
             fprintf(*fout, "%c", eng[(desh == 0) * (j + ceas[o] - 28) + (desh == 1) * (j - ceas[o] + 28)]);
             break;
           }
