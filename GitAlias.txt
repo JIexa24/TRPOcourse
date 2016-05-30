@@ -7,3 +7,4 @@ rs - reset
 ph - push
 pl - pull
 cl - clone
+st - status

@@ -3,7 +3,6 @@
 void vizhiner(const char *eng, const char *ENG,
               int lorr, int desh, FILE ** fout)
 {
-
   int i, j, o, lenght = 0, klenght = 0, vvod = 1, mas = 1;
 
   *fout = fopen("out.txt", "a");
