@@ -19,6 +19,7 @@ atbash.o: src/atbash.c
 
 clean:
 	rm -f Obj/*.o
+	make one
 
 install:
 	cp bin/Ciphers /usr/local/bin
