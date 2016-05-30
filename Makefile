@@ -3,7 +3,7 @@ CC = gcc
 all:  one
 
 one:  main.o ceasar.o vizhiner.o atbash.o
-	$(CC) Obj/main.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o -o /bin/main
+	$(CC) Obj/*.o -o bin/Ciphers
 
 main.o: src/main.c
 	$(CC) -c src/main.c -o Obj/main.o
@@ -19,3 +19,9 @@ atbash.o: src/atbash.c
 
 clean:
 	rm -f Obj/*.o
+
+install:
+	cp bin/Ciphers /usr/local/bin
+
+unistall:
+	rm -f /usr/local/bin/Ciphers
