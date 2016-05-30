@@ -1,9 +1,0 @@
-[alias]
-
-  cm = commit -m
-  co = checkout
-  st = status
-  br = branch
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  ad = add
-  rst = reset
