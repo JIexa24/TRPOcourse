@@ -5,7 +5,6 @@ void ceasar(const char *eng, const char *ENG, int ceas,
 {
   int i,j,lenght = 0,vvod = 1;
 
-  printf("%d", ceas);
   *fout = fopen("out.txt", "a");
 
   char *slovo;

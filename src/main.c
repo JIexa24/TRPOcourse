@@ -74,7 +74,7 @@ int main(int argc, char * argv[])
     break;
 
     default:
-      printf("Miss chiper");
+      printf("Miss chiper\n");
     break;
   }
 
