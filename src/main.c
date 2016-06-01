@@ -1,6 +1,6 @@
-#include "ceasar.h"
-#include "vizhiner.h"
-#include "atbash.h"
+#include "../include/ceasar.h"
+#include "../include/vizhiner.h"
+#include "../include/atbash.h"
 
 #include <unistd.h>
 
