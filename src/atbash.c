@@ -1,4 +1,4 @@
-#include "atbash.h"
+#include "../include/atbash.h"
 
 void atbash(const char *eng, const char *ENG,
             int desh, FILE ** fout)
@@ -14,11 +14,14 @@ void atbash(const char *eng, const char *ENG,
   fprintf(*fout, "Slovo:\n");
   printf("\nVvedite slovo\n");
 
-  while (vvod == 1) {
+  while (vvod) {
     scanf("%c", &slovo[lenght]);
 
-    if (slovo[lenght] == '\n')
+    if (slovo[lenght] == '\n') {
+      slovo[lenght] = '\0'
       break;
+    }
+
     slovo = (char*)realloc(slovo, ++lenght+1);
   }
 

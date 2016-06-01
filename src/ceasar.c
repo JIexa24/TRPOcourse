@@ -1,4 +1,4 @@
-#include "ceasar.h"
+#include "../include/ceasar.h"
 
 void ceasar(const char *eng, const char *ENG, int ceas,
             int lorr, int desh, FILE ** fout)
@@ -18,8 +18,10 @@ void ceasar(const char *eng, const char *ENG, int ceas,
   while (vvod == 1) {
     scanf("%c", &slovo[lenght]);
 
-    if (slovo[lenght] == '\n')
+    if (slovo[lenght] == '\n') {
+      slovo[lenght] = '\0';
       break;
+    }
 
     slovo = (char *)realloc(slovo, ++lenght + 1);
   }

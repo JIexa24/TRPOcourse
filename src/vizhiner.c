@@ -1,4 +1,4 @@
-#include "vizhiner.h"
+#include "../include/vizhiner.h"
 
 void vizhiner(const char *eng, const char *ENG,
               int lorr, int desh, FILE ** fout)
@@ -16,8 +16,10 @@ void vizhiner(const char *eng, const char *ENG,
   while (vvod == 1) {
     scanf("%c", &slovo[lenght]);
 
-    if( slovo[lenght] == '\n' )
+    if (slovo[lenght] == '\n') {
+      slovo[lenght] = '\0';
       break;
+    }
 
     slovo = (char*)realloc(slovo, ++lenght + 1);
   }
@@ -37,8 +39,10 @@ void vizhiner(const char *eng, const char *ENG,
   while (vvod == 1) {
     scanf("%c", &kodslovo[klenght]);
 
-    if (kodslovo[klenght] == '\n')
+    if (kodslovo[klenght] == '\n') {
+      kodslovo[klenght] = '\0';
       break;
+    }
 
     kodslovo = (char *)realloc(kodslovo, ++klenght + 1);
   }
