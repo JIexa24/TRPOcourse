@@ -2,7 +2,7 @@ CC = gcc
 
 all:  one
 
-one:  Obj/main.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o
+one:  Obj/main.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o Obj/base64.o
 	$(CC) Obj/*.o -o bin/Ciphers
 
 Obj/main.o: src/main.c
@@ -16,6 +16,9 @@ Obj/vizhiner.o: src/vizhiner.c
 
 Obj/atbash.o: src/atbash.c
 	$(CC) -c src/atbash.c -o Obj/atbash.o
+
+Obj/base64.o: src/base64.c
+	$(CC) -c src/base64.c -o Obj/base64.o
 
 clean:
 	rm -f Obj/*.o

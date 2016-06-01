@@ -18,7 +18,7 @@ void atbash(const char *eng, const char *ENG,
     scanf("%c", &slovo[lenght]);
 
     if (slovo[lenght] == '\n') {
-      slovo[lenght] = '\0'
+      slovo[lenght] = '\0';
       break;
     }
 
