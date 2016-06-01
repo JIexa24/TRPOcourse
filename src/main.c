@@ -1,12 +1,14 @@
 #include "../include/ceasar.h"
 #include "../include/vizhiner.h"
 #include "../include/atbash.h"
+#include "../include/base64.h"
 
 #include <unistd.h>
 
 #define ONE 1
 #define TWO 2
 #define THREE 3
+#define FOUR 4
 
 int main(int argc, char * argv[])
 {
@@ -24,7 +26,7 @@ int main(int argc, char * argv[])
   int variant = 0, kluch = -1, lorr = 1, debug = 0;
 
   opterr = 0;
-  while ((opt = getopt(argc, argv, "cvak:ld")) != -1) {
+  while ((opt = getopt(argc, argv, "cvabk:ld")) != -1) {
     switch (opt) {
       case 'c':
         if (variant == 0)
@@ -43,6 +45,11 @@ int main(int argc, char * argv[])
       case 'a':
         if (variant == 0)
           variant = 3;
+      break;
+      
+      case 'b':
+        if (variant == 0)
+          variant = 4;
       break;
 
       case 'l':
@@ -71,6 +78,10 @@ int main(int argc, char * argv[])
 
     case THREE:
       atbash(eng, ENG, debug, &fout);
+    break;
+    
+    case FOUR:
+      BASE64();
     break;
 
     default:
