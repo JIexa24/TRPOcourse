@@ -21,7 +21,7 @@ int main(int argc, char * argv[])
   printf("1.Chiper ceasar\n");
   printf("2.Chiper Vizhiner\n");
   printf("3.Chiper Atbash\n");
-  printf("4.Chiper Base64\n");
+  printf("4.Chiper Base64\n\n");
 
   int opt;
   int variant = 0, kluch = -1, lorr = 1, debug = 0;

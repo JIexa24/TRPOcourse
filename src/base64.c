@@ -57,6 +57,14 @@ int BASE64()
 {
 	char *test = (char *)malloc(sizeof(test));
 	int lenght = 0, vvod = 1;
+	int t;
+	for (t = 0; t < 60; t++)
+		{ 
+		system("color A");
+		printf ("-");
+		Sleep(25);
+		}
+		printf ("\n");
 	printf("Your choise Base64 \n");
 	printf("enter coding word \n");
 	 while (vvod == 1) {

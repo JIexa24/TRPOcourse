@@ -4,6 +4,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <dos.h>
+#include <windows.h>
 
 	void B64Encode(unsigned char in[3], int len, unsigned char out[4]);
 	unsigned int getB64Index(unsigned char c);
