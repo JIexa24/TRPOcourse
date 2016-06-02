@@ -94,14 +94,14 @@ void ceasar(const char *eng, const char *ENG, int ceas,
   if (fout == NULL) {
     printf("Ceasar\n\n");
     printf("word: %s\n\n", *word);
-    printf("kluch: %d\n\n", ceas);
+    printf("key: %d\n\n", ceas);
     printf("rezult: %s\n", codeword);
     printf("\n\n");
   }
   else {
     fprintf(fout, "Ceasar\n\n");
     fprintf(fout, "word: %s\n\n", *word);
-    fprintf(fout, "kluch: %d\n\n", ceas);
+    fprintf(fout, "key: %d\n\n", ceas);
     fprintf(fout, "rezult: %s\n", codeword);
     fprintf(fout,"\n\n");
   }
