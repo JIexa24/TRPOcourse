@@ -11,8 +11,8 @@ void atbash(const char *eng, const char *ENG,
   char *slovo;
   slovo = (char*)malloc(sizeof(slovo));
 
-  fprintf(*fout, "Slovo:\n");
-  printf("\nVvedite slovo\n");
+  fprintf(*fout, "Word:\n");
+  printf("\nEnter word\n");
 
   while (vvod) {
     scanf("%c", &slovo[lenght]);

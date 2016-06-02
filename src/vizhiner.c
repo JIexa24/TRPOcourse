@@ -11,7 +11,7 @@ void vizhiner(const char *eng, const char *ENG,
   slovo = (char *)malloc(sizeof(slovo));
 
   fprintf(*fout, "Vizhiner\n\n");
-  printf("\nVvedite slovo\n");
+  printf("\nEnter word\n");
 
   while (vvod == 1) {
     scanf("%c", &slovo[lenght]);
@@ -24,7 +24,7 @@ void vizhiner(const char *eng, const char *ENG,
     slovo = (char*)realloc(slovo, ++lenght + 1);
   }
 
-  fprintf(*fout, "Slovo:\n");
+  fprintf(*fout, "word:\n");
 
   for (i = 0; i < lenght; i++)
    fprintf(*fout, "%c", slovo[i]);
@@ -34,7 +34,7 @@ void vizhiner(const char *eng, const char *ENG,
   char *kodslovo;
   kodslovo = (char *)malloc(sizeof(kodslovo));
 
-  printf("\nVvedite kodslovo\n");
+  printf("\nEnter key word\n");
 
   while (vvod == 1) {
     scanf("%c", &kodslovo[klenght]);
@@ -47,13 +47,13 @@ void vizhiner(const char *eng, const char *ENG,
     kodslovo = (char *)realloc(kodslovo, ++klenght + 1);
   }
 
-  fprintf(*fout, "\nKodslovo:\n");
+  fprintf(*fout, "\nKey word:\n");
 
   for (i = 0; i < klenght; i++)
     fprintf(*fout, "%c", kodslovo[i]);
 
   fprintf(*fout, "\n\n");
-  fprintf(*fout, "rezult:\n");
+  fprintf(*fout, "result:\n");
 
   int *ceas;
   ceas = (int *)malloc(klenght * sizeof(int));

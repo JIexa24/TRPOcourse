@@ -13,7 +13,7 @@ void ceasar(const char *eng, const char *ENG, int ceas,
   fprintf(*fout, "Ceasar\n");
   fprintf(*fout, "\nSlovo:\n");
 
-  printf("\nVvedite slovo\n");
+  printf("\nEnter word\n");
 
   while (vvod == 1) {
     scanf("%c", &slovo[lenght]);
@@ -29,8 +29,8 @@ void ceasar(const char *eng, const char *ENG, int ceas,
   for(i = 0; i< lenght;i++)
     fprintf(*fout, "%c", slovo[i]);
 
-  fprintf(*fout, "\n\nkluch: %d\n\n", ceas);
-  fprintf(*fout, "rezult:\n");
+  fprintf(*fout, "\n\nKey: %d\n\n", ceas);
+  fprintf(*fout, "result:\n");
 
   for (i = 0; i < lenght; i++) {
     if (slovo[i] == ' ') {
