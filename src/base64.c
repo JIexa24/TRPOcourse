@@ -62,7 +62,7 @@ int BASE64()
 		{ 
 		system("color A");
 		printf ("-");
-		Sleep(25);
+		sleep(25);
 		}
 		printf ("\n");
 	printf("Your choise Base64 \n");
