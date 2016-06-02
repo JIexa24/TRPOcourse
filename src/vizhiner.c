@@ -28,7 +28,7 @@ void vizhiner(const char *eng, const char *ENG,
   char *kodword;
   kodword = (char *)malloc(sizeof(kodword));
 
-  printf("\nVvedite keyword\n");
+  printf("\nEnter keyword\n");
 
   while (vvod == 1) {
     scanf("%c", &kodword[klenght]);
@@ -136,7 +136,7 @@ void vizhiner(const char *eng, const char *ENG,
     fprintf(fout, "rezult: %s\n", codeword);
     fprintf(fout,"\n\n");
   }
+
   free(kodword);
   free(ceas);
-
 }

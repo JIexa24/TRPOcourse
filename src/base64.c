@@ -57,6 +57,7 @@ int BASE64()
 {
 	char *test = (char *)malloc(sizeof(test));
 	int lenght = 0, vvod = 1;
+	printf("Your choise Base64 \n");
 	printf("enter coding word \n");
 	 while (vvod == 1) {
     scanf("%c", &test[lenght]);

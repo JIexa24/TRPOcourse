@@ -25,6 +25,7 @@ void ceasar(const char *eng, const char *ENG, int ceas,
     lenght = strlen(*word);
   }
 
+
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {

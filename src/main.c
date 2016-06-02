@@ -71,12 +71,6 @@ int main(int argc, char * argv[])
     }
   }
 
-/*
-  if (kluch < 0 && variant == 1) {
-    printf("\nmiss key for ceasar\n");
-    return 1;
-  }
-*/
   switch (variant) {
     case ONE:
       ceasar(eng, ENG, kluch, lorr, debug, fout, &word);
@@ -89,7 +83,7 @@ int main(int argc, char * argv[])
     case THREE:
       atbash(eng, ENG, debug, fout, &word);
     break;
-    
+
     case FOUR:
       BASE64();
     break;
