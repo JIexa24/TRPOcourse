@@ -93,5 +93,8 @@ int main(int argc, char * argv[])
     break;
   }
 
+  fclose(fout);
+  free(word);
+
   return 0;
 }
