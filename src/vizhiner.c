@@ -1,67 +1,55 @@
 #include "../include/vizhiner.h"
 
 void vizhiner(const char *eng, const char *ENG,
-              int lorr, int desh, FILE ** fout)
+              int lorr, int desh, FILE * fout, char ** word)
 {
   int i, j, o, lenght = 0, klenght = 0, vvod = 1, mas = 1;
 
-  *fout = fopen("out.txt", "a");
+   if (*word == NULL) {
+    *word = (char*)malloc(sizeof(word));
 
-  char *slovo;
-  slovo = (char *)malloc(sizeof(slovo));
+    printf("\nOriginal word :");
 
-  fprintf(*fout, "Vizhiner\n\n");
-  printf("\nVvedite slovo\n");
+    while (vvod) {
+      scanf("%c", &(*word)[lenght]);
+
+      if ((*word)[lenght] == '\n') {
+        (*word)[lenght] = '\0';
+        break;
+      }
+
+      *word = (char *)realloc(*word, ++lenght+1);
+    }
+  }
+  else {
+    lenght = strlen(*word);
+  }
+
+  char *kodword;
+  kodword = (char *)malloc(sizeof(kodword));
+
+  printf("\nVvedite kodword\n");
 
   while (vvod == 1) {
-    scanf("%c", &slovo[lenght]);
+    scanf("%c", &kodword[klenght]);
 
-    if (slovo[lenght] == '\n') {
-      slovo[lenght] = '\0';
+    if (kodword[klenght] == '\n') {
+      kodword[klenght] = '\0';
       break;
     }
 
-    slovo = (char*)realloc(slovo, ++lenght + 1);
+    kodword = (char *)realloc(kodword, ++klenght + 1);
   }
-
-  fprintf(*fout, "Slovo:\n");
-
-  for (i = 0; i < lenght; i++)
-   fprintf(*fout, "%c", slovo[i]);
-
-  fprintf(*fout, "\n");
-
-  char *kodslovo;
-  kodslovo = (char *)malloc(sizeof(kodslovo));
-
-  printf("\nVvedite kodslovo\n");
-
-  while (vvod == 1) {
-    scanf("%c", &kodslovo[klenght]);
-
-    if (kodslovo[klenght] == '\n') {
-      kodslovo[klenght] = '\0';
-      break;
-    }
-
-    kodslovo = (char *)realloc(kodslovo, ++klenght + 1);
-  }
-
-  fprintf(*fout, "\nKodslovo:\n");
-
-  for (i = 0; i < klenght; i++)
-    fprintf(*fout, "%c", kodslovo[i]);
-
-  fprintf(*fout, "\n\n");
-  fprintf(*fout, "rezult:\n");
 
   int *ceas;
   ceas = (int *)malloc(klenght * sizeof(int));
 
+  char *codeword = (char *)malloc(lenght * sizeof(char *));
+
   o = 0;
   for (i = 0; i < lenght; i++) {
-    if(slovo[i] == ' ') {
-      fprintf(*fout, " ");
+    if((*word)[i] == ' ') {
+      codeword[i] = ' ';
       continue;
     }
 
@@ -72,7 +60,7 @@ void vizhiner(const char *eng, const char *ENG,
 
     if (mas == 1) {
       for (j = 0; j < 28; j++) {
-        if((kodslovo[o] == eng[j]) || (kodslovo[o] == ENG[j])) {
+        if((kodword[o] == eng[j]) || (kodword[o] == ENG[j])) {
           ceas[o] = j;
           break;
         }
@@ -80,49 +68,49 @@ void vizhiner(const char *eng, const char *ENG,
     }
 
     for (j = 0; j < 28; j++) {
-      if (slovo[i] == eng[j]) {
+      if ((*word)[i] == eng[j]) {
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas[o]) > 27) + (desh == 1) * ((j - ceas[o]) < 0)) {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j + ceas[o] - 28) + (desh == 1) * (j - ceas[o] + 28)]);
+            codeword[i] = eng[(desh == 0) * (j + ceas[o] - 28) + (desh == 1) * (j - ceas[o] + 28)];
             break;
           }
           else {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])]);
+            codeword[i] = eng[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
             break;
           }
         }
 
         if (lorr == 0) {
           if ((desh == 0) * ((j-ceas[o]) < 0 ) + (desh == 1)*((j+ceas[o]) > 27)) {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j - ceas[o] + 28) + (desh == 1) * (j + ceas[o] - 28)]);
+            codeword[i] = eng[(desh == 0) * (j - ceas[o] + 28) + (desh == 1) * (j + ceas[o] - 28)];
             break;
           }
           else {
-            fprintf(*fout, "%c", eng[(desh ==0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])]);
+            codeword[i] = eng[(desh ==0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
             break;
           }
         }
       }
 
-      if ((slovo[i] == ENG[j]) && (j <= 25)) {
+      if (((*word)[i] == ENG[j]) && (j <= 25)) {
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas[o]) > 25) + (desh == 1) * ((j - ceas[o]) < 0)) {
-            fprintf(*fout, "%c", ENG[(desh == 0) * (j + ceas[o] - 26) + (desh == 1) * (j - ceas[o] + 26)]);
+            codeword[i] = ENG[(desh == 0) * (j + ceas[o] - 26) + (desh == 1) * (j - ceas[o] + 26)];
             break;
           }
           else {
-            fprintf(*fout, "%c", ENG[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])]);
+            codeword[i] = ENG[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
             break;
           }
         }
 
         if (lorr == 0) {
           if((desh == 0) * ((j - ceas[o]) < 0) + (desh == 1) * ((j + ceas[o]) > 25)) {
-            fprintf(*fout, "%c", ENG[(desh == 0) * (j - ceas[o] + 26) + (desh == 1) * (j + ceas[o] - 26)]);
+            codeword[i] = ENG[(desh == 0) * (j - ceas[o] + 26) + (desh == 1) * (j + ceas[o] - 26)];
             break;
           }
           else {
-            fprintf(*fout, "%c", ENG[(desh == 0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])]);
+            codeword[i] = ENG[(desh == 0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
             break;
           }
         }
@@ -134,12 +122,21 @@ void vizhiner(const char *eng, const char *ENG,
     if (i == lenght)
       break;
   }
-
-  fprintf(*fout, "\n\n");
-
-  free(slovo);
-  free(kodslovo);
+  if (fout == NULL) {
+    printf("Vizhiner\n\n");
+    printf("word: %s\n\n", *word);
+    printf("kodword: %s\n\n", kodword);
+    printf("rezult: %s\n", codeword);
+    printf("\n\n");
+  }
+  else {
+    fprintf(fout, "Vizhiner\n\n");
+    fprintf(fout, "word: %s\n\n", *word);
+    fprintf(fout, "kodword: %s\n\n", kodword);
+    fprintf(fout, "rezult: %s\n", codeword);
+    fprintf(fout,"\n\n");
+  }
+  free(kodword);
   free(ceas);
 
-  fclose(*fout);
 }

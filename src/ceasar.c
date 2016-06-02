@@ -1,55 +1,50 @@
 #include "../include/ceasar.h"
 
 void ceasar(const char *eng, const char *ENG, int ceas,
-            int lorr, int desh, FILE ** fout)
+            int lorr, int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
 
-  *fout = fopen("out.txt", "a");
+  if (*word == NULL) {
+    *word = (char*)malloc(sizeof(word));
 
-  char *slovo;
-  slovo = (char *)malloc(sizeof(slovo));
+    printf("\nOriginal word :");
 
-  fprintf(*fout, "Ceasar\n");
-  fprintf(*fout, "\nSlovo:\n");
+    while (vvod) {
+      scanf("%c", &(*word)[lenght]);
 
-  printf("\nVvedite slovo\n");
+      if ((*word)[lenght] == '\n') {
+        (*word)[lenght] = '\0';
+        break;
+      }
 
-  while (vvod == 1) {
-    scanf("%c", &slovo[lenght]);
-
-    if (slovo[lenght] == '\n') {
-      slovo[lenght] = '\0';
-      break;
+      *word = (char *)realloc(*word, ++lenght+1);
     }
-
-    slovo = (char *)realloc(slovo, ++lenght + 1);
+  }
+  else {
+    lenght = strlen(*word);
   }
 
-  for(i = 0; i< lenght;i++)
-    fprintf(*fout, "%c", slovo[i]);
-
-  fprintf(*fout, "\n\nkluch: %d\n\n", ceas);
-  fprintf(*fout, "rezult:\n");
+  char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
-    if (slovo[i] == ' ') {
-      fprintf(*fout," ");
+    if ((*word)[i] == ' ') {
+      codeword[i] = (*word)[i];
       continue;
     }
 
     for (j = 0; j < 28; j++) {
-      if (slovo[i] == eng[j]) {
+      if ((*word)[i] == eng[j]) {
         if (ceas > 28)
           for (ceas; ceas > 28; ceas = ceas-28);
 
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas) > 27) + (desh == 1) * ((j - ceas) < 0)) {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j + ceas - 28) + (desh == 1) * (j - ceas + 28)]);
+            codeword[i] = eng[(desh == 0) * (j + ceas - 28) + (desh == 1) * (j - ceas + 28)];
             break;
           }
           else {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)]);
+            codeword[i] = eng[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
             break;
           }
         }
@@ -57,27 +52,27 @@ void ceasar(const char *eng, const char *ENG, int ceas,
         if(lorr == 0)
         {
           if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 27)) {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j - ceas + 28) + (desh == 1) * (j + ceas - 28)]);
+            codeword[i] = eng[(desh == 0) * (j - ceas + 28) + (desh == 1) * (j + ceas - 28)];
             break;
           }
           else {
-            fprintf(*fout, "%c", eng[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)]);
+            codeword[i] = eng[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
             break;
           }
         }
       }
 
-      if (slovo[i] == ENG[j] && j <= 25) {
+      if ((*word)[i] == ENG[j] && j <= 25) {
         if (ceas > 25)
           for (ceas; ceas > 25;ceas = ceas - 25);
 
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas) > 25) + (desh == 1) * ((j - ceas) < 0)) {
-            fprintf(*fout, "%c", ENG[(desh == 0)*(j + ceas - 26) + (desh == 1) * (j - ceas + 26)]);
+            codeword[i] = ENG[(desh == 0)*(j + ceas - 26) + (desh == 1) * (j - ceas + 26)];
             continue;
           }
           else {
-            fprintf(*fout, "%c", ENG[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)]);
+            codeword[i] = ENG[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
             continue;
           }
         }
@@ -85,21 +80,29 @@ void ceasar(const char *eng, const char *ENG, int ceas,
         if (lorr ==0)
         {
           if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 25)) {
-             fprintf(*fout, "%c", ENG[(desh == 0) * (j - ceas + 26) + (desh == 1) * (j + ceas - 26)]);
+             codeword[i] = ENG[(desh == 0) * (j - ceas + 26) + (desh == 1) * (j + ceas - 26)];
              continue;
           }
           else {
-             fprintf(*fout, "%c", ENG[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)]);
+             codeword[i] = ENG[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
              continue;
           }
         }
       }
     }
   }
-
-  fprintf(*fout, "\n\n");
-
-  free(slovo);
-
-  fclose(*fout);
+  if (fout == NULL) {
+    printf("Ceasar\n\n");
+    printf("word: %s\n\n", *word);
+    printf("kluch: %d\n\n", ceas);
+    printf("rezult: %s\n", codeword);
+    printf("\n\n");
+  }
+  else {
+    fprintf(fout, "Ceasar\n\n");
+    fprintf(fout, "word: %s\n\n", *word);
+    fprintf(fout, "kluch: %d\n\n", ceas);
+    fprintf(fout, "rezult: %s\n", codeword);
+    fprintf(fout,"\n\n");
+  }
 }

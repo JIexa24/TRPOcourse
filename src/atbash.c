@@ -1,58 +1,62 @@
 #include "../include/atbash.h"
 
 void atbash(const char *eng, const char *ENG,
-            int desh, FILE ** fout)
+            int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
 
-  *fout = fopen("out.txt", "a");
-  fprintf(*fout, "Atbash\n\n");
+  if (*word == NULL) {
+    *word = (char*)malloc(sizeof(word));
 
-  char *slovo;
-  slovo = (char*)malloc(sizeof(slovo));
+    printf("\nOriginal word :");
 
-  fprintf(*fout, "Slovo:\n");
-  printf("\nVvedite slovo\n");
+    while (vvod) {
+      scanf("%c", &(*word)[lenght]);
 
-  while (vvod) {
-    scanf("%c", &slovo[lenght]);
+      if ((*word)[lenght] == '\n') {
+        (*word)[lenght] = '\0';
+        break;
+      }
 
-    if (slovo[lenght] == '\n') {
-      slovo[lenght] = '\0';
-      break;
+      *word = (char*)realloc(*word, ++lenght+1);
     }
-
-    slovo = (char*)realloc(slovo, ++lenght+1);
+  }
+  else {
+    lenght = strlen(*word);
   }
 
-  for (i = 0; i < lenght; i++)
-    fprintf(*fout, "%c", slovo[i]);
-
-  fprintf(*fout, "\n\n");
-  fprintf(*fout, "rezult:\n");
+  char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
-    if (slovo[i] == ' ') {
-      fprintf(*fout, " ");
+    if ((*word)[i] == ' ') {
+        codeword[i] = ' ';
       continue;
     }
 
     for (j = 0; j < 28; j++) {
-      if (slovo[i] == eng[j]) {
-        fprintf(*fout, "%c", eng[27 - j]);
+      if ((*word)[i] == eng[j]) {
+        codeword[i] = eng[27 - j];
       }
 
       if (desh == 0) {
-        if (slovo[i] == ENG[j] && j <= 25) {
-          fprintf(*fout, "%c", ENG[25-j]);
+        if ((*word)[i] == ENG[j] && j <= 25) {
+        codeword[i] = ENG[25 - j];
         }
       }
     }
   }
 
-  fprintf(*fout,"\n\n");
+  if (fout == NULL) {
+    printf("Atbash\n\n");
+    printf("word: %s\n\n", *word);
+    printf("rezult: %s\n", codeword);
+    printf("\n\n");
+  }
+  else {
+    fprintf(fout, "Atbash\n\n");
+    fprintf(fout, "word: %s\n\n", *word);
+    fprintf(fout, "rezult: %s\n", codeword);
+    fprintf(fout,"\n\n");
+  }
 
-  free(slovo);
-
-  fclose(*fout);
 }

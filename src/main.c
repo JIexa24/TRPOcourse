@@ -15,18 +15,19 @@ int main(int argc, char * argv[])
   const char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
   const char ENG[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 
-  FILE * fout;
+  FILE *fout = NULL;
 
   printf("Chipers\n");
   printf("1.Chiper ceasar\n");
   printf("2.Chiper Vizhiner\n");
   printf("3.Chiper Atbash\n");
+  printf("4.Chiper Base64\n");
 
   int opt;
   int variant = 0, kluch = -1, lorr = 1, debug = 0;
-
+  char *word = NULL;
   opterr = 0;
-  while ((opt = getopt(argc, argv, "cvabk:ld")) != -1) {
+  while ((opt = getopt(argc, argv, "cvabk:ldw:o:")) != -1) {
     switch (opt) {
       case 'c':
         if (variant == 0)
@@ -46,7 +47,7 @@ int main(int argc, char * argv[])
         if (variant == 0)
           variant = 3;
       break;
-      
+
       case 'b':
         if (variant == 0)
           variant = 4;
@@ -59,25 +60,34 @@ int main(int argc, char * argv[])
       case 'd':
         debug = 1;
       break;
+
+      case 'w':
+        word = optarg;
+      break;
+
+      case 'o':
+        fout = fopen(optarg, "a");
+      break;
     }
   }
 
+/*
   if (kluch < 0 && variant == 1) {
     printf("\nmiss key for ceasar\n");
     return 1;
   }
-
+*/
   switch (variant) {
     case ONE:
-      ceasar(eng, ENG, kluch, lorr, debug, &fout);
+      ceasar(eng, ENG, kluch, lorr, debug, fout, &word);
     break;
 
     case TWO:
-      vizhiner(eng, ENG, lorr, debug, &fout);
+      vizhiner(eng, ENG, lorr, debug, fout, &word);
     break;
 
     case THREE:
-      atbash(eng, ENG, debug, &fout);
+      atbash(eng, ENG, debug, fout, &word);
     break;
     
     case FOUR:
