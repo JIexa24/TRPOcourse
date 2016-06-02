@@ -61,11 +61,10 @@ int BASE64()
 	for (t = 0; t < 60; t++)
 		{ 
 		printf ("-");
-		sleep(25);
 		}
 		printf ("\n");
 	printf("Your choise Base64 \n");
-	printf("enter coding word \n");
+	printf("Enter coding word \n");
 	 while (vvod == 1) {
     scanf("%c", &test[lenght]);
 

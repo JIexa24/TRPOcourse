@@ -10,6 +10,9 @@
 #define THREE 3
 #define FOUR 4
 
+#define FALSE 0
+#define TRUE 1
+
 int main(int argc, char * argv[])
 {
   const char eng[28] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' , ',' , '.' };
@@ -24,9 +27,13 @@ int main(int argc, char * argv[])
   printf("4.Chiper Base64\n\n");
 
   int opt;
+
   int variant = 0, kluch = -1, lorr = 1, debug = 0;
+  int flagword = 0;
   char *word = NULL;
+
   opterr = 0;
+
   while ((opt = getopt(argc, argv, "cvabk:ldw:o:")) != -1) {
     switch (opt) {
       case 'c':
@@ -63,6 +70,7 @@ int main(int argc, char * argv[])
 
       case 'w':
         word = optarg;
+        flagword = TRUE;
       break;
 
       case 'o':
@@ -93,8 +101,9 @@ int main(int argc, char * argv[])
     break;
   }
 
-  fclose(fout);
-  free(word);
-
+    fcloseall();
+    if (!(flagword)) {
+      free(word);
+    }
   return 0;
 }
