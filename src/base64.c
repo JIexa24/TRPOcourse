@@ -60,7 +60,6 @@ int BASE64()
 	int t;
 	for (t = 0; t < 60; t++)
 		{ 
-		system("color A");
 		printf ("-");
 		Sleep(25);
 		}
