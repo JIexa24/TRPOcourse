@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void ceasar(const char *eng, const char *ENG, int ceas,
+char * ceasar(const char *eng, const char *ENG, int ceas,
             int lorr, int desh, FILE * fout, char ** word);
 
 #endif

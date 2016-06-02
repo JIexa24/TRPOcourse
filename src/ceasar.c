@@ -1,6 +1,6 @@
 #include "../include/ceasar.h"
 
-void ceasar(const char *eng, const char *ENG, int ceas,
+char *ceasar(const char *eng, const char *ENG, int ceas,
             int lorr, int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
@@ -106,4 +106,6 @@ void ceasar(const char *eng, const char *ENG, int ceas,
     fprintf(fout, "rezult: %s\n", codeword);
     fprintf(fout,"\n\n");
   }
+
+  return codeword;
 }

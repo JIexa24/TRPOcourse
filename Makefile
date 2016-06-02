@@ -29,3 +29,9 @@ install:
 
 unistall:
 	rm -f /usr/local/bin/Ciphers
+
+ceasar: tests/Obj/ceasar_test.o Obj/ceasar.o
+	$(CC) tests/Obj/ceasar_test.o Obj/ceasar.o -o tests/bin/TestCeasar
+
+tests/Obj/ceasar_test.o: tests/src/ceasar_test.c
+	$(CC) -c tests/src/ceasar_test.c -o tests/Obj/ceasar_test.o
