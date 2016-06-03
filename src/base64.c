@@ -53,50 +53,51 @@ int B64Decode(unsigned char in[4], unsigned char out[3])
 	return len;
 }
 
-int BASE64()
+char *BASE64(int desh, FILE * fout, char ** test)
 {
-	char *test = (char *)malloc(sizeof(test));
+	//char *test = (char *)malloc(sizeof(test));
 	int lenght = 0, vvod = 1;
 	int t;
+
 	for (t = 0; t < 60; t++)
 		{ 
 		printf ("-");
 		}
 		printf ("\n");
-	printf("Your choise Base64 \n");
-	printf("Enter coding word \n");
-	 while (vvod == 1) {
-    scanf("%c", &test[lenght]);
+if (*test == NULL) {
+   *test = (char *)malloc(sizeof(char *));
+   printf("Enter coding word \n");
+   while (vvod == 1) {
+    scanf("%c", &(*test)[lenght]);
 
-    if (test[lenght] == '\n'){
-    	test[lenght] = '\0';
+    if ((*test)[lenght] == '\n'){
+    	(*test)[lenght] = '\0';
       break;
-}
-    test = (char *)realloc(test, ++lenght + 1);
+    }
+    *test = (char *)realloc(*test, ++lenght + 1);
   }
+}
 	
-	
-	char encoded[100];  // Сюда поместим закодированную последовательность
-	
-	
-	printf("Original string: %s\n", test);
-   	// Кодирование
+char *encoded = (char *)malloc(100 * sizeof(char *));  // Сюда поместим закодированную последовательность
 	int j = 0,i = 0, k = 0;
-	for (i = 0; i < strlen( test ); )
+if (desh == 0) {
+   	// Кодирование
+	
+	for (i = 0; i < strlen( *test ); )
 	{
 		int len = 1;
 		unsigned char in[3]; // Временная последовательность для кодирования (буфер)
 		
 		// Копируем 3 очередных символа из исходной строки в буфер
-		in[0] = test[i++];
-		if (i<strlen(test))
+		in[0] = (*test)[i++];
+		if (i<strlen((*test)))
 		{
-			in[1] = test[i++];
+			in[1] = (*test)[i++];
 			len++;
 		}
-		if (i<strlen(test))
+		if (i<strlen((*test)))
 		{
-			in[2] = test[i++];
+			in[2] = (*test)[i++];
 			len++;
 		}
 	
@@ -111,30 +112,39 @@ int BASE64()
 		encoded[j++] = out[3];
 	}
 	encoded[j] = '\0'; // Добавляем "конец строки" (для вывода на экран)
-
-
+}
+else if (desh == 1) {
    	// Декодирование
-	char decoded[100]; // Сюда поместим раскодированную последовательность
-	
-	j=0; 
-	for (i = 0; i < strlen( encoded ); )
+		j=0; 
+	for (i = 0; i < strlen( (*test) ); )
 	{
 		unsigned char in[4];
 
 		for (k = 0; k < 4; k++ )
-			in[k] = encoded[ i++ ];
+			in[k] = (*test)[ i++ ];
 		
 		unsigned char out[3];
 
 		int len = B64Decode(in, out);
 
 		for (k = 0; k < len; k++ )
-			decoded[ j++ ] = out[k];
+			encoded[ j++ ] = out[k];
 	}
-	decoded[j] = '\0';
-	
-	printf("Encoded string : %s \n", encoded);
-	printf("Decoded string : %s \n", decoded);
-	
+	encoded[j] = '\0';
+}
+  if (fout == NULL) {
+    printf("\nBase64\n\n");
+    printf("word: %s\n\n", *test);
+    printf("rezult: %s\n", encoded);
+    printf("\n\n");
+  }
+  else {
+    fprintf(fout, "\nBase64\n\n");
+    fprintf(fout, "word: %s\n\n", *test);
+    fprintf(fout, "rezult: %s\n", encoded);
+    fprintf(fout,"\n\n");
+  }	
+
+  return encoded;
 }
 

@@ -104,7 +104,8 @@ int main(int argc, char * argv[])
     break;
 
     case FOUR:
-      BASE64();
+      a = BASE64(debug, fout, &word);
+      free(a);
     break;
 
     default:
