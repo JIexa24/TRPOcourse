@@ -4,6 +4,7 @@ char *atbash(const char *eng, const char *ENG,
             int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
+  int flag = 0;
 
   if (*word == NULL) {
     *word = (char*)malloc(sizeof(word));
@@ -28,6 +29,7 @@ char *atbash(const char *eng, const char *ENG,
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
+    flag = 0;
     if ((*word)[i] == ' ') {
         codeword[i] = ' ';
       continue;
@@ -36,13 +38,19 @@ char *atbash(const char *eng, const char *ENG,
     for (j = 0; j < 28; j++) {
       if ((*word)[i] == eng[j]) {
         codeword[i] = eng[27 - j];
+        flag = 1;
       }
 
       if (desh == 0) {
         if ((*word)[i] == ENG[j] && j <= 25) {
-        codeword[i] = ENG[25 - j];
+          codeword[i] = ENG[25 - j];
+          flag = 1;
         }
       }
+    }
+
+    if (flag == 0) {
+      codeword[i] = (*word)[i];
     }
   }
 

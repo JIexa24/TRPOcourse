@@ -4,7 +4,7 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
             int lorr, int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
-
+  int flag = 0;
   if (*word == NULL) {
     *word = (char*)malloc(sizeof(word));
 
@@ -33,6 +33,8 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
+    flag = 0;
+
     if ((*word)[i] == ' ') {
       codeword[i] = (*word)[i];
       continue;
@@ -46,10 +48,12 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas) > 27) + (desh == 1) * ((j - ceas) < 0)) {
             codeword[i] = eng[(desh == 0) * (j + ceas - 28) + (desh == 1) * (j - ceas + 28)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = eng[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
+            flag = 1;
             break;
           }
         }
@@ -58,10 +62,12 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
         {
           if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 27)) {
             codeword[i] = eng[(desh == 0) * (j - ceas + 28) + (desh == 1) * (j + ceas - 28)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = eng[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
+            flag = 1;
             break;
           }
         }
@@ -74,26 +80,34 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas) > 25) + (desh == 1) * ((j - ceas) < 0)) {
             codeword[i] = ENG[(desh == 0)*(j + ceas - 26) + (desh == 1) * (j - ceas + 26)];
-            continue;
+            flag = 1;
+            break;
           }
           else {
             codeword[i] = ENG[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
-            continue;
+            flag = 1;
+            break;
           }
         }
 
         if (lorr ==0)
         {
           if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 25)) {
-             codeword[i] = ENG[(desh == 0) * (j - ceas + 26) + (desh == 1) * (j + ceas - 26)];
-             continue;
+            codeword[i] = ENG[(desh == 0) * (j - ceas + 26) + (desh == 1) * (j + ceas - 26)];
+            flag = 1;
+            break;
           }
           else {
-             codeword[i] = ENG[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
-             continue;
+            codeword[i] = ENG[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
+             flag = 1;
+            break;
           }
         }
       }
+    }
+
+    if (flag == 0) {
+      codeword[i] = (*word)[i];
     }
   }
 

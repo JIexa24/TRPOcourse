@@ -48,10 +48,13 @@ char *vizhiner(const char *eng, const char *ENG,
   int *ceas;
   ceas = (int *)malloc(klenght * sizeof(int));
 
+  int flag = 0;
+
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   o = 0;
   for (i = 0; i < lenght; i++) {
+    flag = 0;
     if((*word)[i] == ' ') {
       codeword[i] = ' ';
       continue;
@@ -76,10 +79,12 @@ char *vizhiner(const char *eng, const char *ENG,
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas[o]) > 27) + (desh == 1) * ((j - ceas[o]) < 0)) {
             codeword[i] = eng[(desh == 0) * (j + ceas[o] - 28) + (desh == 1) * (j - ceas[o] + 28)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = eng[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
+            flag = 1;
             break;
           }
         }
@@ -87,10 +92,12 @@ char *vizhiner(const char *eng, const char *ENG,
         if (lorr == 0) {
           if ((desh == 0) * ((j-ceas[o]) < 0 ) + (desh == 1)*((j+ceas[o]) > 27)) {
             codeword[i] = eng[(desh == 0) * (j - ceas[o] + 28) + (desh == 1) * (j + ceas[o] - 28)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = eng[(desh ==0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
+            flag = 1;
             break;
           }
         }
@@ -100,10 +107,12 @@ char *vizhiner(const char *eng, const char *ENG,
         if (lorr == 1) {
           if ((desh == 0) * ((j + ceas[o]) > 25) + (desh == 1) * ((j - ceas[o]) < 0)) {
             codeword[i] = ENG[(desh == 0) * (j + ceas[o] - 26) + (desh == 1) * (j - ceas[o] + 26)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = ENG[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
+            flag = 1;
             break;
           }
         }
@@ -111,10 +120,12 @@ char *vizhiner(const char *eng, const char *ENG,
         if (lorr == 0) {
           if((desh == 0) * ((j - ceas[o]) < 0) + (desh == 1) * ((j + ceas[o]) > 25)) {
             codeword[i] = ENG[(desh == 0) * (j - ceas[o] + 26) + (desh == 1) * (j + ceas[o] - 26)];
+            flag = 1;
             break;
           }
           else {
             codeword[i] = ENG[(desh == 0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
+            flag = 1;
             break;
           }
         }
@@ -123,8 +134,9 @@ char *vizhiner(const char *eng, const char *ENG,
 
     o++;
 
-    if (i == lenght)
-      break;
+    if (flag == 0) {
+      codeword[i] = (*word)[i];
+    }
   }
 
   if (fout == NULL) {
