@@ -25,7 +25,11 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
     lenght = strlen(*word);
   }
 
-
+  if (ceas == -1) {
+    printf("Enter key:");
+    scanf("%d", &ceas);
+    printf("\n");
+  }
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
