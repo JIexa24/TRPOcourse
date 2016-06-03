@@ -3,5 +3,8 @@ dist: trusty
 language: c
 compiler: gcc
 
-script: make
+script:
+	- make one
+	- make tests
+ 		
 
