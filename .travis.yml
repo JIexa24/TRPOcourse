@@ -1,8 +1,7 @@
 sudo: required
 dist: trusty
 language: c
-compiler:
-  - gcc
-install:
- make 
-
+compiler: gcc
+script:
+ - travis/travis-build.sh
+ - travis/travis-tests.sh
