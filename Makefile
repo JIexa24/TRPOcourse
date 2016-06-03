@@ -24,6 +24,11 @@ clean:
 	rm -f Obj/*.o
 	rm -f tests/Obj/*.o
 	make all
+clear:
+	rm -f Obj/*.o
+	rm -f tests/Obj/*.o
+	rm -f bin/Ciphers
+	rm -f tests/bin/Test
 
 install:
 	cp bin/Ciphers /usr/local/bin

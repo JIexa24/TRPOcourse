@@ -25,5 +25,6 @@ int main()
   ATBATEST1();
   ATBATEST2();
 
+  system("rm -f .test");
   return 0;
 }
