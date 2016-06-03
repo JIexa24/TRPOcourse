@@ -129,6 +129,8 @@ char *vizhiner(const char *eng, const char *ENG,
 
   if (fout == NULL) {
     printf("Vizhiner\n\n");
+    if (desh == 1)
+      printf("!--Decoding--!\n\n");
     printf("word: %s\n\n", *word);
     printf("keyword: %s\n\n", *keyword);
     printf("rezult: %s\n", codeword);
@@ -136,6 +138,8 @@ char *vizhiner(const char *eng, const char *ENG,
   }
   else {
     fprintf(fout, "Vizhiner\n\n");
+    if (desh == 1)
+      fprintf(fout, "!--Decoding--!\n\n");
     fprintf(fout, "word: %s\n\n", *word);
     fprintf(fout, "keyword: %s\n\n", *keyword);
     fprintf(fout, "rezult: %s\n", codeword);

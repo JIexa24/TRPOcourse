@@ -119,12 +119,16 @@ char *BASE64(int desh, FILE * fout, char ** test)
 
   if (fout == NULL) {
     printf("\nBase64\n\n");
+    if (desh == 1)
+      printf("!--Decoding--!\n\n");
     printf("word: %s\n\n", *test);
     printf("rezult: %s\n", encoded);
     printf("\n\n");
   }
   else {
     fprintf(fout, "\nBase64\n\n");
+    if (desh == 1)
+      fprintf(fout, "!--Decoding--!\n\n");
     fprintf(fout, "word: %s\n\n", *test);
     fprintf(fout, "rezult: %s\n", encoded);
     fprintf(fout,"\n\n");

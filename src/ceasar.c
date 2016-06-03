@@ -99,6 +99,8 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
 
   if (fout == NULL) {
     printf("Ceasar\n\n");
+    if (desh == 1)
+      printf("!--Decoding--!\n\n");
     printf("word: %s\n\n", *word);
     printf("key: %d\n\n", ceas);
     printf("rezult: %s\n", codeword);
@@ -106,6 +108,8 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
   }
   else {
     fprintf(fout, "Ceasar\n\n");
+    if (desh == 1)
+      fprintf(fout, "!--Decoding--!\n\n");
     fprintf(fout, "word: %s\n\n", *word);
     fprintf(fout, "key: %d\n\n", ceas);
     fprintf(fout, "rezult: %s\n", codeword);
