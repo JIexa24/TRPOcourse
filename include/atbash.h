@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void atbash(const char *eng, const char *ENG,
+char *atbash(const char *eng, const char *ENG,
             int desh, FILE * fout, char ** word);
 
 #endif

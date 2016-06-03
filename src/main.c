@@ -29,8 +29,10 @@ int main(int argc, char * argv[])
   int opt;
 
   int variant = 0, kluch = -1, lorr = 1, debug = 0;
-  int flagword = 0;
+  int flagword = FALSE;
+  int flagkeyword = FALSE;
   char *word = NULL;
+  char *keyword = NULL;
 
   opterr = 0;
 
@@ -42,7 +44,13 @@ int main(int argc, char * argv[])
       break;
 
       case 'k':
-        kluch = atoi(optarg);
+        if (variant == 1)
+          kluch = atoi(optarg);
+
+        if (variant == 2) {
+          keyword = optarg;
+          flagkeyword = TRUE;
+        }
       break;
 
       case 'v':
@@ -86,11 +94,13 @@ int main(int argc, char * argv[])
     break;
 
     case TWO:
-      vizhiner(eng, ENG, lorr, debug, fout, &word);
+      a = vizhiner(eng, ENG, lorr, debug, fout, &word, &keyword);
+      free(a);
     break;
 
     case THREE:
-      atbash(eng, ENG, debug, fout, &word);
+      a = atbash(eng, ENG, debug, fout, &word);
+      free(a);
     break;
 
     case FOUR:
@@ -102,9 +112,13 @@ int main(int argc, char * argv[])
     break;
   }
 
-    fcloseall();
-    if (!(flagword)) {
-      free(word);
-    }
+  fcloseall();
+  if (!(flagword)) {
+    free(word);
+  }
+
+  if (!(flagkeyword)) {
+    free(keyword);
+  }
   return 0;
 }

@@ -1,11 +1,11 @@
 #include "../include/vizhiner.h"
 
-void vizhiner(const char *eng, const char *ENG,
-              int lorr, int desh, FILE * fout, char ** word)
+char *vizhiner(const char *eng, const char *ENG,
+              int lorr, int desh, FILE * fout, char ** word, char ** keyword)
 {
   int i, j, o, lenght = 0, klenght = 0, vvod = 1, mas = 1;
 
-   if (*word == NULL) {
+  if (*word == NULL) {
     *word = (char*)malloc(sizeof(word));
 
     printf("\nOriginal word :");
@@ -25,20 +25,24 @@ void vizhiner(const char *eng, const char *ENG,
     lenght = strlen(*word);
   }
 
-  char *kodword;
-  kodword = (char *)malloc(sizeof(kodword));
+  if (*keyword == NULL) {
+    *keyword = (char *)malloc(sizeof(char *));
 
-  printf("\nEnter keyword\n");
+    printf("\nEnter keyword :");
 
-  while (vvod == 1) {
-    scanf("%c", &kodword[klenght]);
+    while (vvod) {
+      scanf("%c", &(*keyword)[klenght]);
 
-    if (kodword[klenght] == '\n') {
-      kodword[klenght] = '\0';
-      break;
+      if ((*keyword)[klenght] == '\n') {
+        (*keyword)[klenght] = '\0';
+        break;
+      }
+
+      *keyword = (char *)realloc(*keyword, ++klenght+1);
     }
-
-    kodword = (char *)realloc(kodword, ++klenght + 1);
+  }
+  else {
+    klenght = strlen(*keyword);
   }
 
   int *ceas;
@@ -60,7 +64,7 @@ void vizhiner(const char *eng, const char *ENG,
 
     if (mas == 1) {
       for (j = 0; j < 28; j++) {
-        if((kodword[o] == eng[j]) || (kodword[o] == ENG[j])) {
+        if(((*keyword)[o] == eng[j]) || ((*keyword)[o] == ENG[j])) {
           ceas[o] = j;
           break;
         }
@@ -125,18 +129,20 @@ void vizhiner(const char *eng, const char *ENG,
   if (fout == NULL) {
     printf("Vizhiner\n\n");
     printf("word: %s\n\n", *word);
-    printf("keyword: %s\n\n", kodword);
+    printf("keyword: %s\n\n", *keyword);
     printf("rezult: %s\n", codeword);
     printf("\n\n");
   }
   else {
     fprintf(fout, "Vizhiner\n\n");
     fprintf(fout, "word: %s\n\n", *word);
-    fprintf(fout, "keyword: %s\n\n", kodword);
+    fprintf(fout, "keyword: %s\n\n", *keyword);
     fprintf(fout, "rezult: %s\n", codeword);
     fprintf(fout,"\n\n");
   }
 
-  free(kodword);
+  //free(*keyword);
   free(ceas);
+  
+  return codeword;
 }

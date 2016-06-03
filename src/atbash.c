@@ -1,6 +1,6 @@
 #include "../include/atbash.h"
 
-void atbash(const char *eng, const char *ENG,
+char *atbash(const char *eng, const char *ENG,
             int desh, FILE * fout, char ** word)
 {
   int i,j,lenght = 0,vvod = 1;
@@ -59,4 +59,5 @@ void atbash(const char *eng, const char *ENG,
     fprintf(fout,"\n\n");
   }
 
+  return codeword;
 }
