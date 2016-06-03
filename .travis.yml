@@ -3,7 +3,6 @@ dist: trusty
 language: c
 compiler:
   - gcc
-install: ./install-dependencies.sh
+install:
  make 
-  - bundle install --path vendor/bundle
-  - npm install
+
