@@ -87,6 +87,12 @@ int main(int argc, char * argv[])
     }
   }
 
+  if (variant == 0) {
+    printf("Enter variant (1-4) :");
+    scanf("%d", &variant);
+    printf("\n");
+  }
+
   switch (variant) {
     case ONE:
       a = ceasar(eng, ENG, kluch, lorr, debug, fout, &word);
