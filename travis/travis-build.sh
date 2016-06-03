@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./configure: ../make one
+../make one
