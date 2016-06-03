@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-
-make one
+./configure: make one
