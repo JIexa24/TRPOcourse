@@ -89,7 +89,7 @@ int main(int argc, char * argv[])
 
   if (variant == 0) {
     printf("Enter variant (1-4) :");
-    scanf("%d", &variant);
+    scanf("%d%*c", &variant);
     printf("\n");
   }
 
