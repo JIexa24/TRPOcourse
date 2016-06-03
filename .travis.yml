@@ -2,7 +2,4 @@ sudo: required
 dist: trusty
 language: c
 compiler: gcc
-install: travis/travis-qt_install.sh
-script:
- - travis/travis-build.sh
- - travis/travis-tests.sh
+make 
