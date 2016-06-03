@@ -92,6 +92,7 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
       }
     }
   }
+
   if (fout == NULL) {
     printf("Ceasar\n\n");
     printf("word: %s\n\n", *word);

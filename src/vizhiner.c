@@ -126,6 +126,7 @@ char *vizhiner(const char *eng, const char *ENG,
     if (i == lenght)
       break;
   }
+
   if (fout == NULL) {
     printf("Vizhiner\n\n");
     printf("word: %s\n\n", *word);
@@ -141,7 +142,6 @@ char *vizhiner(const char *eng, const char *ENG,
     fprintf(fout,"\n\n");
   }
 
-  //free(*keyword);
   free(ceas);
   
   return codeword;

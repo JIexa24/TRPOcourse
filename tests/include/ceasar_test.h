@@ -3,9 +3,10 @@
 
 #include <stdio.h>
 #include <string.h>
+
 #include "../../include/ceasar.h"
 
-void TEST1();
-void TEST2();
+void CEASTEST1();
+void CEASTEST2();
 
 #endif
