@@ -30,6 +30,10 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
     scanf("%d", &ceas);
     printf("\n");
   }
+
+  if (ceas == -1)
+    ceas = 0;
+
   char *codeword = (char *)malloc(lenght * sizeof(char *));
 
   for (i = 0; i < lenght; i++) {
