@@ -15,7 +15,6 @@ void ATBATEST1()
   }
   else {
     printf("ATBA TEST 1 : error\n");
-
   } 
 }
 
