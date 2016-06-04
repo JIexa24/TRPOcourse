@@ -5,7 +5,7 @@ extern const char *ENG;
 
 int VIZHTEST1()
 {
-  char *array = "aebcdefghijk";
+  char *array = "abcdefghijk";
   char *onetestarray = "acceeggiikk";
   char *key = "ab";
   int lorr = 1;
