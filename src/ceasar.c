@@ -26,12 +26,12 @@ char *ceasar(const char *eng, const char *ENG, int ceas,
   }
 
   if (ceas == -1) {
-    printf("Enter key:");
+    printf("Enter key ( >0 ):");
     scanf("%d", &ceas);
     printf("\n");
   }
 
-  if (ceas == -1)
+  if (ceas < -1)
     ceas = 0;
 
   char *codeword = (char *)malloc(lenght * sizeof(char *));

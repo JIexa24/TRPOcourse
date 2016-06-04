@@ -36,7 +36,7 @@ int main(int argc, char * argv[])
 
   opterr = 0;
 
-  while ((opt = getopt(argc, argv, "cvabk::ldw::o::")) != -1) {
+  while ((opt = getopt(argc, argv, "cvabk:ldw:o:")) != -1) {
     switch (opt) {
       case 'c':
         if (variant == 0)
