@@ -6,9 +6,9 @@
 
 #include "../../include/vizhiner.h"
 
-void VIZHTEST1();
-void VIZHTEST2();
-void VIZHTEST3();
-void VIZHTEST4();
+int VIZHTEST1();
+int VIZHTEST2();
+int VIZHTEST3();
+int VIZHTEST4();
 
 #endif

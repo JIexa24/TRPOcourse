@@ -3,7 +3,7 @@
 extern const char *eng;
 extern const char *ENG;
 
-void ATBATEST1()
+int ATBATEST1()
 {
   char *array = "abcdefghijk";
   char *onetestarray = ".,zyxwvutsr";
@@ -12,13 +12,15 @@ void ATBATEST1()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 1: success\n");
+    return 0;
   }
   else {
     printf("ATBA TEST 1 : error\n");
+    return 1;
   } 
 }
 
-void ATBATEST2()
+int ATBATEST2()
 {
   char *array = "word";
   char *onetestarray = "fnky";
@@ -27,13 +29,15 @@ void ATBATEST2()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 2: success\n");
+    return 0;
   }
   else {
     printf("ATBA TEST 2 : error\n");
+    return 1;
   } 
 }
 
-void ATBATEST3()
+int ATBATEST3()
 {
   char *array = "";
   char *onetestarray = "";
@@ -42,13 +46,15 @@ void ATBATEST3()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 3: success\n");
+    return 0;
   }
   else {
     printf("ATBA TEST 3 : error\n");
+    return 1;
   } 
 }
 
-void ATBATEST4()
+int ATBATEST4()
 {
   char *array = "\n";
   char *onetestarray = "\n";
@@ -57,9 +63,10 @@ void ATBATEST4()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 4: success\n");
+    return 0;
   }
   else {
     printf("ATBA TEST 4 : error\n");
-
+    return 1;
   } 
 }

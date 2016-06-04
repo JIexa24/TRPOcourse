@@ -6,9 +6,9 @@
 
 #include "../../include/atbash.h"
 
-void ATBATEST1();
-void ATBATEST2();
-void ATBATEST3();
-void ATBATEST4();
+int ATBATEST1();
+int ATBATEST2();
+int ATBATEST3();
+int ATBATEST4();
 
 #endif

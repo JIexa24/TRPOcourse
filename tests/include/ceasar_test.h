@@ -6,9 +6,9 @@
 
 #include "../../include/ceasar.h"
 
-void CEASTEST1();
-void CEASTEST2();
-void CEASTEST3();
-void CEASTEST4();
+int CEASTEST1();
+int CEASTEST2();
+int CEASTEST3();
+int CEASTEST4();
 
 #endif

@@ -3,7 +3,7 @@
 extern const char *eng;
 extern const char *ENG;
 
-void CEASTEST1()
+int CEASTEST1()
 {
   char *array = "abcdefghijk";
   char *onetestarray = "cdefghijklm";
@@ -14,13 +14,15 @@ void CEASTEST1()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 1: success\n");
+    return 0;
   }
   else {
     printf("CEAS TEST 1 : error\n");
+    return 1;
   } 
 }
 
-void CEASTEST2()
+int CEASTEST2()
 {
   char *array = "word";
   char *onetestarray = "ey.n";
@@ -31,13 +33,15 @@ void CEASTEST2()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 2: success\n");
+    return 0;
   }
   else {
     printf("CEAS TEST 2 : error\n");
+    return 1;
   } 
 }
 
-void CEASTEST3()
+int CEASTEST3()
 {
   char *array = "";
   char *onetestarray = "";
@@ -48,13 +52,15 @@ void CEASTEST3()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 3: success\n");
+    return 0;
   }
   else {
     printf("CEAS TEST 3 : error\n");
+    return 1;
   } 
 }
 
-void CEASTEST4()
+int CEASTEST4()
 {
   char *array = "\n";
   char *onetestarray = "\n";
@@ -65,8 +71,10 @@ void CEASTEST4()
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 4: success\n");
+    return 0;
   }
   else {
     printf("CEAS TEST 4 : error\n");
+    return 1;
   } 
 }

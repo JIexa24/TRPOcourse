@@ -12,24 +12,25 @@
 
 int main()
 {
-  CEASTEST1();
-  CEASTEST2();
-  CEASTEST3();
-  CEASTEST4();
+  int error = 0;
+  error += CEASTEST1();
+  error += CEASTEST2();
+  error += CEASTEST3();
+  error += CEASTEST4();
 
   printf("\n\n");
 
-  VIZHTEST1();
-  VIZHTEST2();
-  VIZHTEST3();
-  VIZHTEST4();
+  error += VIZHTEST1();
+  error += VIZHTEST2();
+  error += VIZHTEST3();
+  error += VIZHTEST4();
 
   printf("\n\n");
 
-  ATBATEST1();
-  ATBATEST2();
-  ATBATEST3();
-  ATBATEST4();
+  error += ATBATEST1();
+  error += ATBATEST2();
+  error += ATBATEST3();
+  error += ATBATEST4();
 
-  return 0;
+  return error > 0 ? 1 : 0;
 }
