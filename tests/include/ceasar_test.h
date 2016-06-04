@@ -8,5 +8,7 @@
 
 void CEASTEST1();
 void CEASTEST2();
+void CEASTEST3();
+void CEASTEST4();
 
 #endif

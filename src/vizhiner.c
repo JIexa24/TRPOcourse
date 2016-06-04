@@ -1,7 +1,7 @@
 #include "../include/vizhiner.h"
 
 char *vizhiner(const char *eng, const char *ENG,
-              int lorr, int desh, FILE * fout, char ** word, char ** keyword)
+               int lorr, int desh, FILE * fout, char ** word, char ** keyword, int out)
 {
   int i, j, o, lenght = 0, klenght = 0, vvod = 1, mas = 1;
 
@@ -43,6 +43,12 @@ char *vizhiner(const char *eng, const char *ENG,
   }
   else {
     klenght = strlen(*keyword);
+
+    if ((*keyword)[klenght-1] == '\n') {
+      (*keyword)[klenght -1] = '\0';
+      klenght--;
+    }
+
   }
 
   int *ceas;
@@ -139,23 +145,25 @@ char *vizhiner(const char *eng, const char *ENG,
     }
   }
 
-  if (fout == NULL) {
-    printf("Vizhiner\n\n");
-    if (desh == 1)
-      printf("!--Decoding--!\n\n");
-    printf("word: %s\n\n", *word);
-    printf("keyword: %s\n\n", *keyword);
-    printf("rezult: %s\n", codeword);
-    printf("\n\n");
-  }
-  else {
-    fprintf(fout, "Vizhiner\n\n");
-    if (desh == 1)
-      fprintf(fout, "!--Decoding--!\n\n");
-    fprintf(fout, "word: %s\n\n", *word);
-    fprintf(fout, "keyword: %s\n\n", *keyword);
-    fprintf(fout, "rezult: %s\n", codeword);
-    fprintf(fout,"\n\n");
+  if (out == 1) {
+    if (fout == NULL) {
+      printf("Vizhiner\n\n");
+      if (desh == 1)
+        printf("!--Decoding--!\n\n");
+      printf("word: %s\n\n", *word);
+      printf("keyword: %s\n\n", *keyword);
+      printf("rezult: %s\n", codeword);
+      printf("\n\n");
+    }
+    else {
+      fprintf(fout, "Vizhiner\n\n");
+      if (desh == 1)
+        fprintf(fout, "!--Decoding--!\n\n");
+      fprintf(fout, "word: %s\n\n", *word);
+      fprintf(fout, "keyword: %s\n\n", *keyword);
+      fprintf(fout, "rezult: %s\n", codeword);
+      fprintf(fout,"\n\n");
+    }
   }
 
   free(ceas);

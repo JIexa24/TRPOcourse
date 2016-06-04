@@ -31,6 +31,7 @@ clear:
 	rm -f tests/bin/Test
 
 install:
+	make one
 	cp bin/Ciphers /usr/local/bin
 
 unistall:

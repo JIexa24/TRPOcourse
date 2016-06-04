@@ -6,6 +6,6 @@
 #include <string.h>
 
 char *atbash(const char *eng, const char *ENG,
-            int desh, FILE * fout, char ** word);
+             int desh, FILE * fout, char ** word, int out);
 
 #endif

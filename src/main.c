@@ -95,17 +95,17 @@ int main(int argc, char * argv[])
 
   switch (variant) {
     case ONE:
-      a = ceasar(eng, ENG, kluch, lorr, debug, fout, &word);
+      a = ceasar(eng, ENG, kluch, lorr, debug, fout, &word, TRUE);
       free(a);
     break;
 
     case TWO:
-      a = vizhiner(eng, ENG, lorr, debug, fout, &word, &keyword);
+      a = vizhiner(eng, ENG, lorr, debug, fout, &word, &keyword, TRUE);
       free(a);
     break;
 
     case THREE:
-      a = atbash(eng, ENG, debug, fout, &word);
+      a = atbash(eng, ENG, debug, fout, &word, TRUE);
       free(a);
     break;
 

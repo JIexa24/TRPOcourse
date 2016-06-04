@@ -8,8 +8,7 @@ void ATBATEST1()
   char *array = "abcdefghijk";
   char *onetestarray = ".,zyxwvutsr";
   int desh = 0;
-  FILE * t = fopen(".test","w");
-  char *testarray = atbash(eng, ENG, desh, t, &array);
+  char *testarray = atbash(eng, ENG, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 1: success\n");
@@ -25,15 +24,43 @@ void ATBATEST2()
   char *array = "word";
   char *onetestarray = "fnky";
   int desh = 0;
-  FILE * t = fopen(".test","w");
-  char *testarray = atbash(eng, ENG, desh, t, &array);
+  char *testarray = atbash(eng, ENG, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("ATBA TEST 2: success\n");
   }
   else {
     printf("ATBA TEST 2 : error\n");
-
   } 
 }
 
+void ATBATEST3()
+{
+  char *array = "";
+  char *onetestarray = "";
+  int desh = 0;
+  char *testarray = atbash(eng, ENG, desh, NULL, &array, 0);
+
+  if (!(strcmp(onetestarray, testarray))) {
+    printf("ATBA TEST 3: success\n");
+  }
+  else {
+    printf("ATBA TEST 3 : error\n");
+  } 
+}
+
+void ATBATEST4()
+{
+  char *array = "\n";
+  char *onetestarray = "\n";
+  int desh = 0;
+  char *testarray = atbash(eng, ENG, desh, NULL, &array, 0);
+
+  if (!(strcmp(onetestarray, testarray))) {
+    printf("ATBA TEST 4: success\n");
+  }
+  else {
+    printf("ATBA TEST 4 : error\n");
+
+  } 
+}

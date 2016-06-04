@@ -10,8 +10,7 @@ void CEASTEST1()
   int ceas = 2;          
   int lorr = 1;
   int desh = 0;
-  FILE * t = fopen(".test","w");
-  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, t, &array);
+  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 1: success\n");
@@ -28,8 +27,7 @@ void CEASTEST2()
   int ceas = 10;          
   int lorr = 1;
   int desh = 0;
-  FILE * t = fopen(".test","w");
-  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, t, &array);
+  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
     printf("CEAS TEST 2: success\n");
@@ -39,3 +37,36 @@ void CEASTEST2()
   } 
 }
 
+void CEASTEST3()
+{
+  char *array = "";
+  char *onetestarray = "";
+  int ceas = 2;          
+  int lorr = 1;
+  int desh = 0;
+  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
+
+  if (!(strcmp(onetestarray, testarray))) {
+    printf("CEAS TEST 3: success\n");
+  }
+  else {
+    printf("CEAS TEST 3 : error\n");
+  } 
+}
+
+void CEASTEST4()
+{
+  char *array = "\n";
+  char *onetestarray = "\n";
+  int ceas = 2;          
+  int lorr = 1;
+  int desh = 0;
+  char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
+
+  if (!(strcmp(onetestarray, testarray))) {
+    printf("CEAS TEST 4: success\n");
+  }
+  else {
+    printf("CEAS TEST 4 : error\n");
+  } 
+}

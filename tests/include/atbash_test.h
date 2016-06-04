@@ -8,5 +8,7 @@
 
 void ATBATEST1();
 void ATBATEST2();
+void ATBATEST3();
+void ATBATEST4();
 
 #endif

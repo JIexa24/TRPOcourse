@@ -14,17 +14,22 @@ int main()
 {
   CEASTEST1();
   CEASTEST2();
+  CEASTEST3();
+  CEASTEST4();
 
   printf("\n\n");
 
   VIZHTEST1();
   VIZHTEST2();
+  VIZHTEST3();
+  VIZHTEST4();
 
   printf("\n\n");
 
   ATBATEST1();
   ATBATEST2();
+  ATBATEST3();
+  ATBATEST4();
 
-  system("rm -f .test");
   return 0;
 }
