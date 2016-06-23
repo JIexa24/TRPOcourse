@@ -20,9 +20,11 @@ Obj/atbash.o: src/atbash.c
 Obj/base64.o: src/base64.c
 	$(CC) -c src/base64.c -o Obj/base64.o
 
-clean:
+restruct:
 	rm -f Obj/*.o
 	rm -f tests/Obj/*.o
+	rm -f bin/Ciphers
+	rm -f tests/bin/Test
 	make all
 clear:
 	rm -f Obj/*.o
