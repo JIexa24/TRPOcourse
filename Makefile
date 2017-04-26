@@ -26,6 +26,7 @@ restruct:
 	rm -f bin/Ciphers
 	rm -f tests/bin/Test
 	make all
+
 clear:
 	rm -f Obj/*.o
 	rm -f tests/Obj/*.o
