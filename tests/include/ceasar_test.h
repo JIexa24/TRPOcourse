@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "../../include/ceasar.h"
+#include "tst.h"
 
 int CEASTEST1();
 int CEASTEST2();

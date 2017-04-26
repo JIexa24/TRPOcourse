@@ -32,5 +32,6 @@ int main()
   error += ATBATEST3();
   error += ATBATEST4();
 
+  printf(TEST_DEF);
   return error > 0 ? 1 : 0;
 }

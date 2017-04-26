@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "../../include/vizhiner.h"
+#include "tst.h"
 
 int VIZHTEST1();
 int VIZHTEST2();

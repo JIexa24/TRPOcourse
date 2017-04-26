@@ -3,7 +3,7 @@ CC = gcc
 all:  one tests
 
 one:  Obj/main.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o Obj/base64.o
-	$(CC) Obj/*.o -o bin/Ciphers
+	$(CC) Obj/*.o -o bin/Ciphers 
 
 Obj/main.o: src/main.c
 	$(CC) -c src/main.c -o Obj/main.o
@@ -41,6 +41,7 @@ unistall:
 
 tests: tests/Obj/ceasar_test.o Obj/ceasar.o tests/Obj/vizhiner_test.o Obj/vizhiner.o tests/Obj/atbash_test.o Obj/atbash.o tests/Obj/maintest.o
 	$(CC) tests/Obj/*.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o -o tests/bin/Test
+	./tests/bin/Test
 
 tests/Obj/maintest.o: tests/src/maintest.c
 	$(CC) -c tests/src/maintest.c -o tests/Obj/maintest.o

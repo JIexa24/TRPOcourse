@@ -13,11 +13,13 @@ int CEASTEST1()
   char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("CEAS TEST 1: success\n");
     return 0;
   }
   else {
-    printf("CEAS TEST 1 : error\n");
+    printf(TEST_FAIL);
+    printf("CEAS TEST 1: error\n");
     return 1;
   } 
 }
@@ -32,11 +34,13 @@ int CEASTEST2()
   char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("CEAS TEST 2: success\n");
     return 0;
   }
   else {
-    printf("CEAS TEST 2 : error\n");
+    printf(TEST_FAIL);
+    printf("CEAS TEST 2: error\n");
     return 1;
   } 
 }
@@ -51,11 +55,13 @@ int CEASTEST3()
   char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("CEAS TEST 3: success\n");
     return 0;
   }
   else {
-    printf("CEAS TEST 3 : error\n");
+    printf(TEST_FAIL);
+    printf("CEAS TEST 3: error\n");
     return 1;
   } 
 }
@@ -70,11 +76,13 @@ int CEASTEST4()
   char *testarray = ceasar(eng, ENG, ceas, lorr, desh, NULL, &array, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("CEAS TEST 4: success\n");
     return 0;
   }
   else {
-    printf("CEAS TEST 4 : error\n");
+    printf(TEST_FAIL);
+    printf("CEAS TEST 4: error\n");
     return 1;
   } 
 }

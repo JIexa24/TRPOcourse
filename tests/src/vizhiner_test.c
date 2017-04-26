@@ -13,11 +13,13 @@ int VIZHTEST1()
   char *testarray = vizhiner(eng, ENG, lorr, desh, NULL, &array, &key, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("VIZH TEST 1: success\n");
     return 0;
   }
   else {
-    printf("VIZH TEST 1 : error\n");
+    printf(TEST_FAIL);
+    printf("VIZH TEST 1: error\n");
     return 1;
   } 
 }
@@ -32,11 +34,13 @@ int VIZHTEST2()
   char *testarray = vizhiner(eng, ENG, lorr, desh, NULL, &array, &key, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("VIZH TEST 2: success\n");
     return 0;
   }
   else {
-    printf("VIZH TEST 2 : error\n");
+    printf(TEST_FAIL);
+    printf("VIZH TEST 2: error\n");
     return 1;
   } 
 }
@@ -51,11 +55,13 @@ int VIZHTEST3()
   char *testarray = vizhiner(eng, ENG, lorr, desh, NULL, &array, &key, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("VIZH TEST 3: success\n");
     return 0;
   }
   else {
-    printf("VIZH TEST 3 : error\n");
+    printf(TEST_FAIL);
+    printf("VIZH TEST 3: error\n");
     return 1;
   } 
 }
@@ -70,11 +76,13 @@ int VIZHTEST4()
   char *testarray = vizhiner(eng, ENG, lorr, desh, NULL, &array, &key, 0);
 
   if (!(strcmp(onetestarray, testarray))) {
+    printf(TEST_OK);
     printf("VIZH TEST 4: success\n");
     return 0;
   }
   else {
-    printf("VIZH TEST 4 : error\n");
+    printf(TEST_FAIL);
+    printf("VIZH TEST 4: error\n");
     return 1;
   } 
 }

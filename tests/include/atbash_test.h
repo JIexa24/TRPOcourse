@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "../../include/atbash.h"
+#include "tst.h"
 
 int ATBATEST1();
 int ATBATEST2();
