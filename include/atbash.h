@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *atbash(const char *eng, const char *ENG,
-             int desh, FILE * fout, char ** word, int out);
+char *atbash(int result, char *word, FILE *fout);
 
 #endif

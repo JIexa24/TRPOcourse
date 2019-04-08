@@ -7,8 +7,9 @@
 
 #define TESTS
 
- const char *eng = "abcdefghijklmnopqrstuvwxyz,.";
- const char *ENG = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const char *eng = "abcdefghijklmnopqrstuvwxyz";
+const char *sym = ",.";
+const char *ENG = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 int main()
 {
@@ -19,7 +20,6 @@ int main()
   error += CEASTEST4();
 
   printf("\n\n");
-
   error += VIZHTEST1();
   error += VIZHTEST2();
   error += VIZHTEST3();

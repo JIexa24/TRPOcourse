@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *ceasar(const char *eng, const char *ENG, int ceas,
-             int lorr, int desh, FILE * fout, char ** word, int out);
+char *ceasar(int key, int vector, int decode, int result, char * word, FILE* fout);
 
 #endif

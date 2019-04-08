@@ -1,139 +1,61 @@
 #include "../include/ceasar.h"
 
-char *ceasar(const char *eng, const char *ENG, int ceas,
-             int lorr, int desh, FILE * fout, char ** word, int out)
-{
-  int i,j,lenght = 0,vvod = 1;
-  int flag = 0;
-  if (*word == NULL) {
-    *word = (char*)malloc(sizeof(word));
+extern const char *eng;
+extern const char *ENG;
+extern const char *sym;
 
-    printf("\nOriginal word :");
-
-    while (vvod) {
-      scanf("%c", &(*word)[lenght]);
-
-      if ((*word)[lenght] == '\n') {
-        (*word)[lenght] = '\0';
+char *ceasar(int key, int vector, int decode, int result, char *word,
+             FILE *fout) {
+  int length = strlen(word);
+  int i = 0;
+  int j = 0;
+  int replace_flag = 0;
+  char *codeword = (char *)malloc(sizeof(char) * length);
+  vector = vector > 0 ? 1 : -1;
+  decode = decode > 0 ? 1 : -1;
+  for (i = 0; i < length; ++i) {
+    replace_flag = 0;
+    for (j = 0; j < strlen(eng); ++j) {
+      if (word[i] == eng[j]) {
+        codeword[i] =
+            eng[(j + vector * decode * key + strlen(eng)) % strlen(eng)];
+        replace_flag = 1;
         break;
       }
-
-      *word = (char *)realloc(*word, ++lenght+1);
     }
-  }
-  else {
-    lenght = strlen(*word);
-  }
-
-  if (ceas == -1) {
-    printf("Enter key ( >0 ):");
-    scanf("%d", &ceas);
-    printf("\n");
-  }
-
-  if (ceas < -1)
-    ceas = 0;
-
-  char *codeword = (char *)malloc(lenght * sizeof(char *));
-
-  for (i = 0; i < lenght; i++) {
-    flag = 0;
-
-    if ((*word)[i] == ' ') {
-      codeword[i] = (*word)[i];
+    if (replace_flag)
       continue;
-    }
-
-    for (j = 0; j < 28; j++) {
-      if ((*word)[i] == eng[j]) {
-        if (ceas > 28)
-          for (ceas; ceas > 28; ceas = ceas-28);
-
-        if (lorr == 1) {
-          if ((desh == 0) * ((j + ceas) > 27) + (desh == 1) * ((j - ceas) < 0)) {
-            codeword[i] = eng[(desh == 0) * (j + ceas - 28) + (desh == 1) * (j - ceas + 28)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = eng[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
-            flag = 1;
-            break;
-          }
-        }
-
-        if(lorr == 0)
-        {
-          if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 27)) {
-            codeword[i] = eng[(desh == 0) * (j - ceas + 28) + (desh == 1) * (j + ceas - 28)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = eng[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
-            flag = 1;
-            break;
-          }
-        }
-      }
-
-      if ((*word)[i] == ENG[j] && j <= 25) {
-        if (ceas > 25)
-          for (ceas; ceas > 25;ceas = ceas - 25);
-
-        if (lorr == 1) {
-          if ((desh == 0) * ((j + ceas) > 25) + (desh == 1) * ((j - ceas) < 0)) {
-            codeword[i] = ENG[(desh == 0)*(j + ceas - 26) + (desh == 1) * (j - ceas + 26)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = ENG[(desh == 0) * (j + ceas) + (desh == 1) * (j - ceas)];
-            flag = 1;
-            break;
-          }
-        }
-
-        if (lorr ==0)
-        {
-          if ((desh == 0) * ((j - ceas) < 0) + (desh == 1) * ((j + ceas) > 25)) {
-            codeword[i] = ENG[(desh == 0) * (j - ceas + 26) + (desh == 1) * (j + ceas - 26)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = ENG[(desh == 0) * (j - ceas) + (desh == 1) * (j + ceas)];
-             flag = 1;
-            break;
-          }
-        }
+    for (j = 0; j < strlen(ENG); ++j) {
+      if (word[i] == ENG[j]) {
+        codeword[i] =
+            ENG[(j + vector * decode * key + strlen(ENG)) % strlen(ENG)];
+        replace_flag = 1;
+        break;
       }
     }
-
-    if (flag == 0) {
-      codeword[i] = (*word)[i];
+    if (replace_flag)
+      continue;
+    for (j = 0; j < strlen(sym); ++j) {
+      if (word[i] == sym[j]) {
+        codeword[i] =
+            sym[(j + vector * decode * key + strlen(sym)) % strlen(sym)];
+        replace_flag = 1;
+        break;
+      }
     }
+    if (replace_flag)
+      continue;
   }
-
-  if (out == 1) {
-    if (fout == NULL) {
-      printf("Ceasar\n\n");
-      if (desh == 1)
-        printf("!--Decoding--!\n\n");
-      printf("word: %s\n\n", *word);
-      printf("key: %d\n\n", ceas);
-      printf("rezult: %s\n", codeword);
-      printf("\n\n");
-    }
-    else {
-      fprintf(fout, "Ceasar\n\n");
-      if (desh == 1)
-        fprintf(fout, "!--Decoding--!\n\n");
-      fprintf(fout, "word: %s\n\n", *word);
-      fprintf(fout, "key: %d\n\n", ceas);
-      fprintf(fout, "rezult: %s\n", codeword);
-      fprintf(fout,"\n\n");
-    }
+  if (result == 1) {
+    if (fout == NULL)
+      fout = stdout;
+    fprintf(fout, "Ceasar\n\n");
+    if (decode < 0)
+      fprintf(fout, "!--Decoding--!\n\n");
+    fprintf(fout, "Word: %s\n\n", word);
+    fprintf(fout, "Key: %d\n\n", key);
+    fprintf(fout, "Rezult: %s\n", codeword);
+    fprintf(fout, "\n\n");
   }
   return codeword;
 }

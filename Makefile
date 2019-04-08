@@ -2,56 +2,56 @@ CC = gcc
 
 all:  one tests
 
-one:  Obj/main.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o Obj/base64.o
-	$(CC) Obj/*.o -o bin/Ciphers 
+one:  obj/main.o obj/ceasar.o obj/vizhiner.o obj/atbash.o obj/base64.o
+	$(CC) obj/*.o -o bin/ciphers
 
-Obj/main.o: src/main.c
-	$(CC) -c src/main.c -o Obj/main.o
+obj/main.o: src/main.c
+	$(CC) -c src/main.c -o obj/main.o
 
-Obj/ceasar.o: src/ceasar.c
-	$(CC) -c src/ceasar.c -o Obj/ceasar.o
+obj/ceasar.o: src/ceasar.c
+	$(CC) -c src/ceasar.c -o obj/ceasar.o
 
-Obj/vizhiner.o: src/vizhiner.c
-	$(CC) -c src/vizhiner.c -o Obj/vizhiner.o
+obj/vizhiner.o: src/vizhiner.c
+	$(CC) -c src/vizhiner.c -o obj/vizhiner.o
 
-Obj/atbash.o: src/atbash.c
-	$(CC) -c src/atbash.c -o Obj/atbash.o
+obj/atbash.o: src/atbash.c
+	$(CC) -c src/atbash.c -o obj/atbash.o
 
-Obj/base64.o: src/base64.c
-	$(CC) -c src/base64.c -o Obj/base64.o
+obj/base64.o: src/base64.c
+	$(CC) -c src/base64.c -o obj/base64.o
 
 restruct:
-	rm -f Obj/*.o
-	rm -f tests/Obj/*.o
-	rm -f bin/Ciphers
-	rm -f tests/bin/Test
+	rm -f obj/*.o
+	rm -f tests/obj/*.o
+	rm -f bin/ciphers
+	rm -f tests/bin/test
 	make all
 
 clear:
-	rm -f Obj/*.o
-	rm -f tests/Obj/*.o
-	rm -f bin/Ciphers
-	rm -f tests/bin/Test
+	rm -f obj/*.o
+	rm -f tests/obj/*.o
+	rm -f bin/ciphers
+	rm -f tests/bin/test
 
 install:
 	make one
-	cp bin/Ciphers /usr/local/bin
+	cp bin/ciphers /usr/local/bin
 
 unistall:
-	rm -f /usr/local/bin/Ciphers
+	rm -f /usr/local/bin/ciphers
 
-tests: tests/Obj/ceasar_test.o Obj/ceasar.o tests/Obj/vizhiner_test.o Obj/vizhiner.o tests/Obj/atbash_test.o Obj/atbash.o tests/Obj/maintest.o
-	$(CC) tests/Obj/*.o Obj/ceasar.o Obj/vizhiner.o Obj/atbash.o -o tests/bin/Test
-	./tests/bin/Test
+tests: tests/obj/ceasar_test.o obj/ceasar.o tests/obj/vizhiner_test.o obj/vizhiner.o tests/obj/atbash_test.o obj/atbash.o tests/obj/maintest.o
+	$(CC) tests/obj/*.o obj/ceasar.o obj/vizhiner.o obj/atbash.o -o tests/bin/test
+	./tests/bin/test
 
-tests/Obj/maintest.o: tests/src/maintest.c
-	$(CC) -c tests/src/maintest.c -o tests/Obj/maintest.o
+tests/obj/maintest.o: tests/src/maintest.c
+	$(CC) -c tests/src/maintest.c -o tests/obj/maintest.o
 
-tests/Obj/ceasar_test.o: tests/src/ceasar_test.c
-	$(CC) -c tests/src/ceasar_test.c -o tests/Obj/ceasar_test.o
+tests/obj/ceasar_test.o: tests/src/ceasar_test.c
+	$(CC) -c tests/src/ceasar_test.c -o tests/obj/ceasar_test.o
 
-tests/Obj/vizhiner_test.o: tests/src/vizhiner_test.c
-	$(CC) -c tests/src/vizhiner_test.c -o tests/Obj/vizhiner_test.o
+tests/obj/vizhiner_test.o: tests/src/vizhiner_test.c
+	$(CC) -c tests/src/vizhiner_test.c -o tests/obj/vizhiner_test.o
 
-tests/Obj/atbash_test.o: tests/src/atbash_test.c
-	$(CC) -c tests/src/atbash_test.c -o tests/Obj/atbash_test.o
+tests/obj/atbash_test.o: tests/src/atbash_test.c
+	$(CC) -c tests/src/atbash_test.c -o tests/obj/atbash_test.o

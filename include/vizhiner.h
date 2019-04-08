@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *vizhiner(const char *eng, const char *ENG,
-               int lorr, int desh, FILE * fout, char ** word, char ** keyword, int out);
+char *vizhiner(char* keyword, int vector, int decode, int result, char * word, FILE* fout);
 
 #endif

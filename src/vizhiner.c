@@ -1,172 +1,96 @@
 #include "../include/vizhiner.h"
+extern const char *eng;
+extern const char *ENG;
+extern const char *sym;
+char *vizhiner(char *keyword, int vector, int decode, int result, char *word,
+               FILE *fout) {
+  int length = strlen(word);
+  int keylength = strlen(keyword);
+  int i = 0;
+  int j = 0;
+  int replace_flag = 0;
+  char *codeword = (char *)malloc(sizeof(char) * length);
+  int *offsets = (int *)malloc(sizeof(int) * keylength);
+  vector = vector > 0 ? 1 : -1;
+  decode = decode > 0 ? 1 : -1;
 
-char *vizhiner(const char *eng, const char *ENG,
-               int lorr, int desh, FILE * fout, char ** word, char ** keyword, int out)
-{
-  int i, j, o, lenght = 0, klenght = 0, vvod = 1, mas = 1;
-
-  if (*word == NULL) {
-    *word = (char*)malloc(sizeof(word));
-
-    printf("\nOriginal word :");
-
-    while (vvod) {
-      scanf("%c", &(*word)[lenght]);
-
-      if ((*word)[lenght] == '\n') {
-        (*word)[lenght] = '\0';
+  for (i = 0; i < keylength; ++i) {
+    replace_flag = 0;
+    for (j = 0; j < strlen(eng); ++j) {
+      if (keyword[i] == eng[j]) {
+        offsets[i] = j;
+        replace_flag = 1;
         break;
       }
-
-      *word = (char *)realloc(*word, ++lenght+1);
     }
-  }
-  else {
-    lenght = strlen(*word);
-  }
-
-  if (*keyword == NULL) {
-    *keyword = (char *)malloc(sizeof(char *));
-
-    printf("\nEnter keyword :");
-
-    while (vvod) {
-      scanf("%c", &(*keyword)[klenght]);
-
-      if ((*keyword)[klenght] == '\n') {
-        (*keyword)[klenght] = '\0';
-        break;
-      }
-
-      *keyword = (char *)realloc(*keyword, ++klenght+1);
-    }
-  }
-  else {
-    klenght = strlen(*keyword);
-
-    if ((*keyword)[klenght-1] == '\n') {
-      (*keyword)[klenght -1] = '\0';
-      klenght--;
-    }
-
-  }
-
-  int *ceas;
-  ceas = (int *)malloc(klenght * sizeof(int));
-
-  int flag = 0;
-
-  char *codeword = (char *)malloc(lenght * sizeof(char *));
-
-  o = 0;
-  for (i = 0; i < lenght; i++) {
-    flag = 0;
-    if((*word)[i] == ' ') {
-      codeword[i] = ' ';
+    if (replace_flag)
       continue;
-    }
-
-    if (o == klenght) {
-      o = 0;
-      mas = 0;
-    }
-
-    if (mas == 1) {
-      for (j = 0; j < 28; j++) {
-        if(((*keyword)[o] == eng[j]) || ((*keyword)[o] == ENG[j])) {
-          ceas[o] = j;
-          break;
-        }
+    for (j = 0; j < strlen(ENG); ++j) {
+      if (keyword[i] == ENG[j]) {
+        offsets[i] = j;
+        replace_flag = 1;
+        break;
       }
     }
-
-    for (j = 0; j < 28; j++) {
-      if ((*word)[i] == eng[j]) {
-        if (lorr == 1) {
-          if ((desh == 0) * ((j + ceas[o]) > 27) + (desh == 1) * ((j - ceas[o]) < 0)) {
-            codeword[i] = eng[(desh == 0) * (j + ceas[o] - 28) + (desh == 1) * (j - ceas[o] + 28)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = eng[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
-            flag = 1;
-            break;
-          }
-        }
-
-        if (lorr == 0) {
-          if ((desh == 0) * ((j-ceas[o]) < 0 ) + (desh == 1)*((j+ceas[o]) > 27)) {
-            codeword[i] = eng[(desh == 0) * (j - ceas[o] + 28) + (desh == 1) * (j + ceas[o] - 28)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = eng[(desh ==0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
-            flag = 1;
-            break;
-          }
-        }
-      }
-
-      if (((*word)[i] == ENG[j]) && (j <= 25)) {
-        if (lorr == 1) {
-          if ((desh == 0) * ((j + ceas[o]) > 25) + (desh == 1) * ((j - ceas[o]) < 0)) {
-            codeword[i] = ENG[(desh == 0) * (j + ceas[o] - 26) + (desh == 1) * (j - ceas[o] + 26)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = ENG[(desh == 0) * (j + ceas[o]) + (desh == 1) * (j - ceas[o])];
-            flag = 1;
-            break;
-          }
-        }
-
-        if (lorr == 0) {
-          if((desh == 0) * ((j - ceas[o]) < 0) + (desh == 1) * ((j + ceas[o]) > 25)) {
-            codeword[i] = ENG[(desh == 0) * (j - ceas[o] + 26) + (desh == 1) * (j + ceas[o] - 26)];
-            flag = 1;
-            break;
-          }
-          else {
-            codeword[i] = ENG[(desh == 0) * (j - ceas[o]) + (desh == 1) * (j + ceas[o])];
-            flag = 1;
-            break;
-          }
-        }
+    if (replace_flag)
+      continue;
+    for (j = 0; j < strlen(sym); ++j) {
+      if (keyword[i] == sym[j]) {
+        offsets[i] = j;
+        replace_flag = 1;
+        break;
       }
     }
-
-    o++;
-
-    if (flag == 0) {
-      codeword[i] = (*word)[i];
-    }
+    if (replace_flag)
+      continue;
   }
 
-  if (out == 1) {
-    if (fout == NULL) {
-      printf("Vizhiner\n\n");
-      if (desh == 1)
-        printf("!--Decoding--!\n\n");
-      printf("word: %s\n\n", *word);
-      printf("keyword: %s\n\n", *keyword);
-      printf("rezult: %s\n", codeword);
-      printf("\n\n");
+  for (i = 0; i < length; ++i) {
+    replace_flag = 0;
+    for (j = 0; j < strlen(eng); ++j) {
+      if (word[i] == eng[j]) {
+        codeword[i] =
+            eng[(j + vector * decode * offsets[i % keylength] + strlen(eng)) %
+                strlen(eng)];
+        replace_flag = 1;
+        break;
+      }
     }
-    else {
-      fprintf(fout, "Vizhiner\n\n");
-      if (desh == 1)
-        fprintf(fout, "!--Decoding--!\n\n");
-      fprintf(fout, "word: %s\n\n", *word);
-      fprintf(fout, "keyword: %s\n\n", *keyword);
-      fprintf(fout, "rezult: %s\n", codeword);
-      fprintf(fout,"\n\n");
+    if (replace_flag)
+      continue;
+    for (j = 0; j < strlen(ENG); ++j) {
+      if (word[i] == ENG[j]) {
+        codeword[i] =
+            ENG[(j + vector * decode * offsets[i % keylength] + strlen(ENG)) %
+                strlen(ENG)];
+        replace_flag = 1;
+        break;
+      }
     }
+    if (replace_flag)
+      continue;
+    for (j = 0; j < strlen(sym); ++j) {
+      if (word[i] == sym[j]) {
+        codeword[i] =
+            sym[(j + vector * decode * offsets[i % keylength] + strlen(sym)) %
+                strlen(sym)];
+        replace_flag = 1;
+        break;
+      }
+    }
+    if (replace_flag)
+      continue;
   }
-
-  free(ceas);
-  
+  if (result == 1) {
+    if (fout == NULL)
+      fout = stdout;
+    fprintf(fout, "Vizhiner\n\n");
+    if (decode < 0)
+      fprintf(fout, "!--Decoding--!\n\n");
+    fprintf(fout, "Word: %s\n\n", word);
+    fprintf(fout, "Key: %s\n\n", keyword);
+    fprintf(fout, "Rezult: %s\n", codeword);
+    fprintf(fout, "\n\n");
+  }
   return codeword;
 }

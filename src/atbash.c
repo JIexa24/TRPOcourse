@@ -1,77 +1,54 @@
 #include "../include/atbash.h"
 
-char *atbash(const char *eng, const char *ENG,
-             int desh, FILE * fout, char ** word, int out)
-{
-  int i,j,lenght = 0,vvod = 1;
-  int flag = 0;
+extern const char *eng;
+extern const char *ENG;
+extern const char *sym;
 
-  if (*word == NULL) {
-    *word = (char*)malloc(sizeof(word));
+char *atbash(int result, char *word, FILE *fout) {
+  int length = strlen(word);
+  int i = 0;
+  int j = 0;
+  int replace_flag = 0;
+  char *codeword = (char *)malloc(sizeof(char) * length);
 
-    printf("\nOriginal word :");
-
-    while (vvod) {
-      scanf("%c", &(*word)[lenght]);
-
-      if ((*word)[lenght] == '\n') {
-        (*word)[lenght] = '\0';
+  for (i = 0; i < length; ++i) {
+    replace_flag = 0;
+    for (j = 0; j < strlen(eng); ++j) {
+      if (word[i] == eng[j]) {
+        codeword[i] = eng[strlen(eng) - j - 1];
+        replace_flag = 1;
         break;
       }
-
-      *word = (char*)realloc(*word, ++lenght+1);
     }
-  }
-  else {
-    lenght = strlen(*word);
-  }
-
-  char *codeword = (char *)malloc(lenght * sizeof(char *));
-
-  for (i = 0; i < lenght; i++) {
-    flag = 0;
-    if ((*word)[i] == ' ') {
-        codeword[i] = ' ';
+    if (replace_flag)
       continue;
-    }
-
-    for (j = 0; j < 28; j++) {
-      if ((*word)[i] == eng[j]) {
-        codeword[i] = eng[27 - j];
-        flag = 1;
-      }
-
-      if (desh == 0) {
-        if ((*word)[i] == ENG[j] && j <= 25) {
-          codeword[i] = ENG[25 - j];
-          flag = 1;
-        }
+    for (j = 0; j < strlen(ENG); ++j) {
+      if (word[i] == ENG[j]) {
+        codeword[i] = ENG[strlen(ENG) - j - 1];
+        replace_flag = 1;
+        break;
       }
     }
-
-    if (flag == 0) {
-      codeword[i] = (*word)[i];
+    if (replace_flag)
+      continue;
+    for (j = 0; j < strlen(sym); ++j) {
+      if (word[i] == sym[j]) {
+        codeword[i] = sym[strlen(sym) - j - 1];
+        replace_flag = 1;
+        break;
+      }
     }
+    if (replace_flag)
+      continue;
   }
 
-  if (out == 1) {
-    if (fout == NULL) {
-      printf("Atbash\n\n");
-      if (desh == 1)
-        printf("!--Decoding--!\n\n");
-      printf("word: %s\n\n", *word);
-      printf("rezult: %s\n", codeword);
-      printf("\n\n");
-    }
-    else {
-     fprintf(fout, "Atbash\n\n");
-      if (desh == 1)
-        fprintf(fout, "!--Decoding--!\n\n");
-      fprintf(fout, "word: %s\n\n", *word);
-      fprintf(fout, "rezult: %s\n", codeword);
-      fprintf(fout,"\n\n");
-    }
+  if (result == 1) {
+    if (fout == NULL)
+      fout = stdout;
+    fprintf(fout, "Atbash\n\n");
+    fprintf(fout, "Word: %s\n\n", word);
+    fprintf(fout, "Rezult: %s\n", codeword);
+    fprintf(fout, "\n\n");
   }
-
   return codeword;
 }
